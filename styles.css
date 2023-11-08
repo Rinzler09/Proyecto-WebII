@@ -1,1 +1,49 @@
 /* Este documento se usara para los estilos del juego*/
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-image: url('images/fondoMenu2.jpg');
+    background-repeat: repeat;
+}
+
+#menuOptions {
+    margin: 255px auto;
+    background-color: rgb(1, 42, 86);
+    color: aliceblue;
+    border: 2px solid gray;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+    width: 30rem;
+}
+
+#btnFacil {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    height: 45px;
+    width: 150px;
+    border-radius: 15px;
+    background-color: rgba(24, 255, 240, 0.551);
+    font-weight: bold;
+    font-size: large;
+}
+
+#btnFacil:hover {
+    height: 50px;
+    width: 155px;
+}
+
+#btnDificil {
+    margin-bottom: 35px;
+    height: 45px;
+    width: 150px;
+    border-radius: 15px;
+    background-color: rgba(220, 114, 201, 0.838);
+    font-weight: bold;
+    font-size: large;
+}
+
+#btnDificil:hover {
+    height: 50px;
+    width: 155px;
+}
