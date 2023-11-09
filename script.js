@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const tablero = document.getElementById('tablero');
-    const btnLanzarDado = document.getElementById('btnLanzarDado');
+    const btnLanzarDado = document.getElementById('lanzarDado');
     const resultadoDadoDiv = document.getElementById('resultadoDado');
     const serpientesYEscaleras = {
         2: 38,
@@ -18,18 +18,39 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const colores = ["color-1", "color-2", "color-3", "color-4", "color-5"];
-    const casillas = [];
+    const casillas = generarTablero();
+
+    let jugadorPos = 0;
+    let jugadorFicha = document.createElement('div');
+    jugadorFicha.className = 'jugador';
+    casillas[9][0].appendChild(jugadorFicha); // Inicia en la casilla que contiene el número 1
+
+    btnLanzarDado.addEventListener('click', function () {
+        const dado = Math.floor(Math.random() * 6) + 1;
+        resultadoDadoDiv.textContent = 'Resultado del dado: ' + dado;
+
+        // Realiza el movimiento del jugador
+        moverJugador(dado);
+
+        /*if (jugadorPos === 99) {
+            alert('¡Has ganado!');
+        }*/
+    });
 
     function generarTablero() {
+        const colores = ["color-1", "color-2", "color-3", "color-4", "color-5"]; // Clases de colores en CSS
+        const casillas = [];
+
         for (let fila = 1; fila <= 10; fila++) {
             const filaDiv = document.createElement("div");
             filaDiv.classList.add("fila");
+
+            const filaCasillas = [];
 
             for (let i = 0; i < 10; i++) {
                 const casillaDiv = document.createElement("div");
                 casillaDiv.classList.add("casilla");
 
-                // Calcula el número de la casilla en función de la fila y columna
                 let numero;
                 if (fila % 2 === 1 && fila == 1) {
                     numero = 100 - i;
@@ -45,49 +66,57 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 casillaDiv.textContent = numero;
 
-                // Asigna un color aleatorio de la paleta de colores
                 const colorIndex = Math.floor(Math.random() * colores.length);
                 casillaDiv.classList.add(colores[colorIndex]);
 
                 filaDiv.appendChild(casillaDiv);
-                casillas.push(casillaDiv);
+                filaCasillas.push(casillaDiv);
             }
 
             tablero.appendChild(filaDiv);
+            casillas.push(filaCasillas);
         }
+
+        return casillas;
+    }
+    
+    function moverJugador(pasos) {
+        const nuevaPosicion = jugadorPos + pasos;
+    
+        // Itera sobre cada casilla y mueve al jugador a la nueva posición
+        for (let i = jugadorPos + 1; i <= nuevaPosicion; i++) {
+            let numero;
+            if (Math.floor((i - 1) / 10) % 2 === 0) {
+                // Filas pares: izquierda a derecha
+                numero = (i - 1) % 10 + 1 + (10 * Math.floor((i - 1) / 10));
+            } else {
+                // Filas impares: derecha a izquierda
+                numero = 10 * Math.floor((i - 1) / 10) + 1 + (9 - (i - 1) % 10);
+            }
+    
+            const fila = 9 - Math.floor((numero - 1) / 10);
+            const columna = (numero - 1) % 10;
+    
+            setTimeout(() => {
+                moverFichaACasilla(fila, columna);
+                if (fila === 0 && columna === 0) {
+                    alert('¡Has ganado!');
+                }
+            }, i * 150);
+        }
+    
+        jugadorPos = nuevaPosicion;
     }
 
-    generarTablero();
-
-    let jugadorPos = 1;
-    let jugadorFicha = null;
-
-    jugadorFicha = document.createElement('div');
-    jugadorFicha.className = 'jugador';
-    casillas[jugadorPos - 1].appendChild(jugadorFicha);
-
-    btnLanzarDado.addEventListener('click', function () {
-        const dado = Math.floor(Math.random() * 6) + 1;
-        resultadoDadoDiv.textContent = 'Resultado del dado: ' + dado;
-    
-        // Calcula la nueva posición del jugador
-        const nuevaPosicion = jugadorPos + dado;
-    
-        if (serpientesYEscaleras[nuevaPosicion]) {
-            jugadorPos = serpientesYEscaleras[nuevaPosicion];
-        } else if (nuevaPosicion <= 100) {
-            jugadorPos = nuevaPosicion;
-        }
-    
-        // Actualiza la posición de la ficha
-        const casillaActual = casillas[jugadorPos - 1];
+    function moverFichaACasilla(fila, columna) {
+        const casillaActual = casillas[fila][columna];
         const posicionCSS = casillaActual.getBoundingClientRect();
     
-        jugadorFicha.style.top = posicionCSS.top + 'px';
-        jugadorFicha.style.left = posicionCSS.left + 'px';
+        // Ajusta la posición para centrar la ficha en la casilla
+        const topFicha = posicionCSS.top + casillaActual.clientHeight / 2 - jugadorFicha.clientHeight / 2;
+        const leftFicha = posicionCSS.left + casillaActual.clientWidth / 2 - jugadorFicha.clientWidth / 2;
     
-        if (jugadorPos === 100) {
-            alert('¡Has ganado!');
-        }
-    });    
+        jugadorFicha.style.top = topFicha + 'px';
+        jugadorFicha.style.left = leftFicha + 'px';
+    }
 });
