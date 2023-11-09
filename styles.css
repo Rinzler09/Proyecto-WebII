@@ -47,3 +47,32 @@ body {
     height: 50px;
     width: 155px;
 }
+
+
+#btnInstrucciones {
+    margin-bottom: 35px;
+    height: 45px;
+    width: 150px;
+    border-radius: 15px;
+    background-color: rgba(108, 234, 12, 0.838);
+    font-weight: bold;
+    font-size: large;
+}
+
+#btnInstrucciones:hover {
+    height: 50px;
+    width: 155px;
+}
+
+#divInstruc {
+
+    margin: 100px auto;
+    border: 2px solid gray;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+    width: 36rem;
+    height: 47rem;
+    background-image: url('images/Instrucciones.jpg');
+}
