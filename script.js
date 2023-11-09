@@ -15,16 +15,12 @@ document.addEventListener('DOMContentLoaded', function () {
         93: 73,
         95: 75,
         98: 78
-    };    
+    };
 
     const colores = ["color-1", "color-2", "color-3", "color-4", "color-5"];
     const casillas = [];
 
     function generarTablero() {
-        const tablero = document.getElementById('tablero');
-        const colores = ["color-1", "color-2", "color-3", "color-4", "color-5"]; // Clases de colores en CSS
-        const casillas = [];
-
         for (let fila = 1; fila <= 10; fila++) {
             const filaDiv = document.createElement("div");
             filaDiv.classList.add("fila");
@@ -40,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     numero = 100 - (10 * (fila - 1)) - i;
                 }
-
 
                 if (fila % 2 === 0 && fila == 2) {
                     numero = 100 - (2 * 10) + 1 + i;
@@ -64,30 +59,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
     generarTablero();
 
-
     let jugadorPos = 1;
     let jugadorFicha = null;
 
     jugadorFicha = document.createElement('div');
     jugadorFicha.className = 'jugador';
     casillas[jugadorPos - 1].appendChild(jugadorFicha);
-    
+
     btnLanzarDado.addEventListener('click', function () {
         const dado = Math.floor(Math.random() * 6) + 1;
-        const resultado = jugadorPos + dado;
-        resultadoDadoDiv.textContent = 'Resultado del dado: '+ dado;
-
-        if (serpientesYEscaleras[resultado]) {
-            jugadorPos = serpientesYEscaleras[resultado];
-        } else if (resultado <= 100) {
-            jugadorPos = resultado;
+        resultadoDadoDiv.textContent = 'Resultado del dado: ' + dado;
+    
+        // Calcula la nueva posición del jugador
+        const nuevaPosicion = jugadorPos + dado;
+    
+        if (serpientesYEscaleras[nuevaPosicion]) {
+            jugadorPos = serpientesYEscaleras[nuevaPosicion];
+        } else if (nuevaPosicion <= 100) {
+            jugadorPos = nuevaPosicion;
         }
-
-        casillas[jugadorPos - 1].appendChild(jugadorFicha);
-
+    
+        // Actualiza la posición de la ficha
+        const casillaActual = casillas[jugadorPos - 1];
+        const posicionCSS = casillaActual.getBoundingClientRect();
+    
+        jugadorFicha.style.top = posicionCSS.top + 'px';
+        jugadorFicha.style.left = posicionCSS.left + 'px';
+    
         if (jugadorPos === 100) {
             alert('¡Has ganado!');
         }
-    });
-});/* Este documento se usara para la programacion en Js del juego*/
-//esta es una prueba de conexion
+    });    
+});
