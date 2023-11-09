@@ -18,6 +18,7 @@ body {
 }
 
 #btnFacil {
+    cursor: pointer;
     margin-top: 15px;
     margin-bottom: 25px;
     height: 45px;
@@ -34,6 +35,7 @@ body {
 }
 
 #btnDificil {
+    cursor: pointer;
     margin-bottom: 35px;
     height: 45px;
     width: 150px;
@@ -48,8 +50,8 @@ body {
     width: 155px;
 }
 
-
 #btnInstrucciones {
+    cursor: pointer;
     margin-bottom: 35px;
     height: 45px;
     width: 150px;
