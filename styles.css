@@ -122,10 +122,10 @@ body {
     height: 30px;
     background-color: white;
     border-radius: 50%;
-    position: absolute; /* Añadir esta línea para establecer la posición absoluta */
-    top: 50px; /* Ajusta la posición superior según sea necesario */
-    left: 50px; /* Ajusta la posición izquierda según sea necesario */
-    z-index: 1; /* Añadir esta línea para establecer el índice Z */
+    position: absolute; 
+    top: 555px; 
+    left: 235px;
+    z-index: 1; 
 }
 
 #lanzarDado {
