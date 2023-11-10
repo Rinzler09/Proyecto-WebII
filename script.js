@@ -2,20 +2,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const tablero = document.getElementById('tablero');
     const btnLanzarDado = document.getElementById('lanzarDado');
     const resultadoDadoDiv = document.getElementById('resultadoDado');
-    const serpientesYEscaleras = {
-        2: 38,
-        7: 14,
-        16: 6,
-        47: 26,
-        49: 11,
-        56: 53,
-        62: 19,
-        64: 60,
-        87: 24,
-        93: 73,
-        95: 75,
-        98: 78
-    };
+    
+    const serpientesYEscaleras = [
+        { inicio: 2, fin: 38, tipo: 'escalera' },
+        { inicio: 7, fin: 14, tipo: 'serpiente' },
+        { inicio: 16, fin: 6, tipo: 'serpiente' },
+        { inicio: 47, fin: 26, tipo: 'escalera' },
+        { inicio: 49, fin: 11, tipo: 'serpiente' },
+        { inicio: 56, fin: 53, tipo: 'escalera' },
+        { inicio: 62, fin: 19, tipo: 'serpiente' },
+        { inicio: 64, fin: 60, tipo: 'serpiente' },
+        { inicio: 87, fin: 24, tipo: 'escalera' },
+        { inicio: 93, fin: 73, tipo: 'serpiente' },
+        { inicio: 95, fin: 75, tipo: 'serpiente' },
+        { inicio: 98, fin: 78, tipo: 'escalera' }
+    ];
+    
 
     const colores = ["color-1", "color-2", "color-3", "color-4", "color-5"];
     const casillas = generarTablero();
@@ -97,26 +99,39 @@ document.addEventListener('DOMContentLoaded', function () {
             const fila = 9 - Math.floor((numero - 1) / 10);
             const columna = (numero - 1) % 10;
     
+            const serpienteOEscalera = serpientesYEscaleras.find(se => se.inicio === numero);
+            if (serpienteOEscalera) {
+                // Si hay serpiente o escalera, mueve al jugador a la casilla final de la misma
+                numero = serpienteOEscalera.fin;
+            }
+
             setTimeout(() => {
                 moverFichaACasilla(fila, columna);
-                if (fila === 0 && columna === 0) {
-                    alert('¡Has ganado!');
-                }
             }, i * 150);
         }
-    
+
         jugadorPos = nuevaPosicion;
+
+        // Verifica si el jugador ha ganado
+        if (jugadorPos === 100) {
+            alert('¡Has ganado!');
+        }
     }
+    
 
     function moverFichaACasilla(fila, columna) {
+    // Verifica si casillas[fila] existe antes de acceder a casillas[fila][columna]
+    if (casillas[fila] && casillas[fila][columna]) {
         const casillaActual = casillas[fila][columna];
         const posicionCSS = casillaActual.getBoundingClientRect();
-    
+
         // Ajusta la posición para centrar la ficha en la casilla
         const topFicha = posicionCSS.top + casillaActual.clientHeight / 2 - jugadorFicha.clientHeight / 2;
         const leftFicha = posicionCSS.left + casillaActual.clientWidth / 2 - jugadorFicha.clientWidth / 2;
-    
+
         jugadorFicha.style.top = topFicha + 'px';
         jugadorFicha.style.left = leftFicha + 'px';
     }
+}
+
 });
