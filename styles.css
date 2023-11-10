@@ -84,8 +84,8 @@
     }
 
     .casilla {
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         display: inline-block;
         text-align: center;
         line-height: 50px;
@@ -178,3 +178,33 @@
         height: 50px;
         width: 155px;
     }
+
+    nav {
+        background-color: #333;
+        height: 70px;
+    }
+
+    #menu2 {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    
+    #menu2 li {
+        float: left;
+    }
+    
+    #menu2 a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    
+    #menu2 a:hover {
+        background-color: #ddd;
+        color: black;
+        height: 40px;
+    }    
