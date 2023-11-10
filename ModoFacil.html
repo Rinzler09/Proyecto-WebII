@@ -4,23 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
     <title>Modo Facil</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
 </head>
 
 <body>
-    <div>
-        <a href="index.html" target="_self">
-            <button id="btnAtras">Inicio</button>
-        </a>
-    </div>
-    <h1>Modo Facil</h1>
+    <nav>
+        <ul id="menu2">
+            <li><a href="index.html"><button id="btnAtras">Inicio</button></a></li>
+            <li><a href="Intrucciones.html"><button id="btnInstrucciones">Ver Instrucciones</button></a></li>
+        </ul>
+    </nav>
     <div id="juego">
-        <div id="tablero"></div>
+        <br>
+        <div id="tablero"></div><br>
         <div id="resultadoDado"></div>
         <button id="lanzarDado">Lanzar Dado</button>
     </div>
-    <script src="script.js"></script>
 </body>
 
 </html>
