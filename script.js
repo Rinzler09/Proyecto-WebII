@@ -2,45 +2,51 @@ document.addEventListener('DOMContentLoaded', function () {
     const tablero = document.getElementById('tablero');
     const btnLanzarDado = document.getElementById('lanzarDado');
     const resultadoDadoDiv = document.getElementById('resultadoDado');
-    
-    const serpientesYEscaleras = [
-        { inicio: 2, fin: 38, tipo: 'escalera' },
-        { inicio: 7, fin: 14, tipo: 'serpiente' },
-        { inicio: 16, fin: 6, tipo: 'serpiente' },
-        { inicio: 47, fin: 26, tipo: 'escalera' },
-        { inicio: 49, fin: 11, tipo: 'serpiente' },
-        { inicio: 56, fin: 53, tipo: 'escalera' },
-        { inicio: 62, fin: 19, tipo: 'serpiente' },
-        { inicio: 64, fin: 60, tipo: 'serpiente' },
-        { inicio: 87, fin: 24, tipo: 'escalera' },
-        { inicio: 93, fin: 73, tipo: 'serpiente' },
-        { inicio: 95, fin: 75, tipo: 'serpiente' },
-        { inicio: 98, fin: 78, tipo: 'escalera' }
-    ];
-    
+
+    // Definición de escaleras y serpientes
+    const escalerasYSerpientes = {
+        4: 56,
+        12: 50,
+        14: 55,
+        22: 58,
+        37: 3,
+        41: 79,
+        47: 16,
+        54: 88,
+        75: 32,
+        94: 71,
+        96: 42
+    };
 
     const colores = ["color-1", "color-2", "color-3", "color-4", "color-5"];
     const casillas = generarTablero();
 
+    // Inicialmente, coloca la imagen en la casilla [0][0]
+    const imagen = document.createElement('img');
+    imagen.src = 'images/modoFacil.png';
+    imagen.alt = 'Escalera';
+    imagen.classList.add('imagen-estilo');
+    tablero.appendChild(imagen);
+
+    const posicionCSSImagen = casillas[0][0].getBoundingClientRect();
+    imagen.style.top = posicionCSSImagen.top + 'px';
+    imagen.style.left = posicionCSSImagen.left + 'px';
+
+    // Inicialmente, coloca la ficha en la casilla [9][0]
     let jugadorPos = 0;
     let jugadorFicha = document.createElement('div');
     jugadorFicha.className = 'jugador';
-    casillas[9][0].appendChild(jugadorFicha); // Inicia en la casilla que contiene el número 1
+    casillas[9][0].appendChild(jugadorFicha);
 
     btnLanzarDado.addEventListener('click', function () {
         const dado = Math.floor(Math.random() * 6) + 1;
         resultadoDadoDiv.textContent = 'Resultado del dado: ' + dado;
 
-        // Realiza el movimiento del jugador
         moverJugador(dado);
-
-        /*if (jugadorPos === 99) {
-            alert('¡Has ganado!');
-        }*/
     });
 
     function generarTablero() {
-        const colores = ["color-1", "color-2", "color-3", "color-4", "color-5"]; // Clases de colores en CSS
+        const colores = ["color-1", "color-2", "color-3", "color-4", "color-5"];
         const casillas = [];
 
         for (let fila = 1; fila <= 10; fila++) {
@@ -81,57 +87,91 @@ document.addEventListener('DOMContentLoaded', function () {
 
         return casillas;
     }
-    
+
     function moverJugador(pasos) {
         const nuevaPosicion = jugadorPos + pasos;
     
-        // Itera sobre cada casilla y mueve al jugador a la nueva posición
-        for (let i = jugadorPos + 1; i <= nuevaPosicion; i++) {
-            let numero;
-            if (Math.floor((i - 1) / 10) % 2 === 0) {
-                // Filas pares: izquierda a derecha
-                numero = (i - 1) % 10 + 1 + (10 * Math.floor((i - 1) / 10));
+        if (nuevaPosicion >= 1 && nuevaPosicion <= 100) {
+            // Movimiento normal
+            for (let i = jugadorPos + 1; i <= nuevaPosicion; i++) {
+                let numero;
+                if (Math.floor((i - 1) / 10) % 2 === 0) {
+                    numero = (i - 1) % 10 + 1 + (10 * Math.floor((i - 1) / 10));
+                } else {
+                    numero = 10 * Math.floor((i - 1) / 10) + 1 + (9 - (i - 1) % 10);
+                }
+    
+                const fila = 9 - Math.floor((numero - 1) / 10);
+                const columna = (numero - 1) % 10;
+    
+                setTimeout(() => {
+                    moverFichaACasilla(fila, columna);
+                }, i * 100);
+            }
+    
+            jugadorPos = nuevaPosicion;
+    
+            // Validación de serpiente o escalera después del movimiento normal
+            if (escalerasYSerpientes[nuevaPosicion]) {
+                const diferencia = escalerasYSerpientes[nuevaPosicion] - nuevaPosicion;
+                const mensaje = diferencia > 0
+                    ? '¡Has subido por una escalera!'
+                    : '¡Has bajado por una serpiente!';
+    
+                alert(mensaje);
+    
+                jugadorPos = escalerasYSerpientes[nuevaPosicion];
+    
+                const pasos = Math.abs(diferencia); // Tomamos el valor absoluto de la diferencia
+    
+                // Movemos la ficha retrocediendo o avanzando según la diferencia
+                for (let i = 1; i <= pasos; i++) {
+                    const paso = diferencia > 0 ? i : -i; // Avanzar o retroceder
+                    const nuevaCasilla = nuevaPosicion + paso;
+    
+                    let numero;
+                    if (Math.floor((nuevaCasilla - 1) / 10) % 2 === 0) {
+                        numero = (nuevaCasilla - 1) % 10 + 1 + (10 * Math.floor((nuevaCasilla - 1) / 10));
+                    } else {
+                        numero = 10 * Math.floor((nuevaCasilla - 1) / 10) + 1 + (9 - (nuevaCasilla - 1) % 10);
+                    }
+    
+                    const fila = 9 - Math.floor((numero - 1) / 10);
+                    const columna = (numero - 1) % 10;
+    
+                    setTimeout(() => {
+                        moverFichaACasilla(fila, columna);
+                    }, (i + nuevaPosicion) * 20);
+                }
+    
+                if (nuevaPosicion === 100) {
+                    alert('¡Has ganado!');
+                }
             } else {
-                // Filas impares: derecha a izquierda
-                numero = 10 * Math.floor((i - 1) / 10) + 1 + (9 - (i - 1) % 10);
+                if (nuevaPosicion === 100) {
+                    alert('¡Has ganado!');
+                }
             }
-    
-            const fila = 9 - Math.floor((numero - 1) / 10);
-            const columna = (numero - 1) % 10;
-    
-            const serpienteOEscalera = serpientesYEscaleras.find(se => se.inicio === numero);
-            if (serpienteOEscalera) {
-                // Si hay serpiente o escalera, mueve al jugador a la casilla final de la misma
-                numero = serpienteOEscalera.fin;
-            }
-
-            setTimeout(() => {
-                moverFichaACasilla(fila, columna);
-            }, i * 150);
-        }
-
-        jugadorPos = nuevaPosicion;
-
-        // Verifica si el jugador ha ganado
-        if (jugadorPos === 100) {
-            alert('¡Has ganado!');
         }
     }
     
+        
 
     function moverFichaACasilla(fila, columna) {
-    // Verifica si casillas[fila] existe antes de acceder a casillas[fila][columna]
-    if (casillas[fila] && casillas[fila][columna]) {
-        const casillaActual = casillas[fila][columna];
-        const posicionCSS = casillaActual.getBoundingClientRect();
+        if (casillas[fila] && casillas[fila][columna]) {
+            const casillaActual = casillas[fila][columna];
+            const posicionCSS = casillaActual.getBoundingClientRect();
 
-        // Ajusta la posición para centrar la ficha en la casilla
-        const topFicha = posicionCSS.top + casillaActual.clientHeight / 2 - jugadorFicha.clientHeight / 2;
-        const leftFicha = posicionCSS.left + casillaActual.clientWidth / 2 - jugadorFicha.clientWidth / 2;
+            const limiteTop = tablero.getBoundingClientRect().top;
+            const limiteLeft = tablero.getBoundingClientRect().left;
+            const limiteBottom = tablero.getBoundingClientRect().bottom - jugadorFicha.clientHeight;
+            const limiteRight = tablero.getBoundingClientRect().right - jugadorFicha.clientWidth;
 
-        jugadorFicha.style.top = topFicha + 'px';
-        jugadorFicha.style.left = leftFicha + 'px';
+            const topFicha = Math.max(limiteTop, Math.min(limiteBottom, posicionCSS.top + window.scrollY + casillaActual.clientHeight / 2 - jugadorFicha.clientHeight / 2));
+            const leftFicha = Math.max(limiteLeft, Math.min(limiteRight, posicionCSS.left + casillaActual.clientWidth / 2 - jugadorFicha.clientWidth / 2));
+
+            jugadorFicha.style.top = topFicha + 'px';
+            jugadorFicha.style.left = leftFicha + 'px';
+        }
     }
-}
-
 });
