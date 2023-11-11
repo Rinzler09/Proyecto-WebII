@@ -129,22 +129,6 @@
     z-index: 1;
 }
 
-#lanzarDado {
-    margin-top: 15px;
-    margin-bottom: 25px;
-    height: 45px;
-    width: 150px;
-    border-radius: 15px;
-    background-color: rgba(24, 255, 240, 0.551);
-    font-weight: bold;
-    font-size: large;
-}
-
-#lanzarDado:hover {
-    height: 50px;
-    width: 155px;
-}
-
 #btnSalir {
     margin-bottom: 35px;
     height: 45px;
@@ -217,4 +201,68 @@ nav {
     top: 98px;
     left: 610px;
     z-index: 1;
+}
+
+#iniciarPartida {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    height: 45px;
+    width: 150px;
+    border-radius: 15px;
+    background-color: #a5c6b1;
+    font-weight: bold;
+    font-size: large;
+}
+
+#iniciarPartida:hover {
+    height: 50px;
+    width: 155px;
+}
+
+#lanzarDado {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    height: 45px;
+    width: 150px;
+    border-radius: 15px;
+    background-color: #d2afae;
+    font-weight: bold;
+    font-size: large;
+}
+
+#lanzarDado:hover {
+    height: 50px;
+    width: 155px;
+}
+
+#abandonarPartida {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    height: 45px;
+    width: 150px;
+    border-radius: 15px;
+    background-color: #cc883e;
+    font-weight: bold;
+    font-size: large;
+}
+
+#abandonarPartida:hover {
+    height: 50px;
+    width: 155px;
+}
+
+#volverAJugar {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    height: 45px;
+    width: 150px;
+    border-radius: 15px;
+    background-color: #f4c88c;
+    font-weight: bold;
+    font-size: large;
+}
+
+#volverAJugar:hover {
+    height: 50px;
+    width: 155px;
 }
