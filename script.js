@@ -2,6 +2,36 @@ document.addEventListener('DOMContentLoaded', function () {
     const tablero = document.getElementById('tablero');
     const btnLanzarDado = document.getElementById('lanzarDado');
     const resultadoDadoDiv = document.getElementById('resultadoDado');
+    const btnIniciarPartida = document.getElementById('iniciarPartida');
+    const btnAbandonarPartida = document.getElementById('abandonarPartida');
+    const btnVolverAJugar = document.getElementById('volverAJugar');
+    const modo = obtenerParametroDeURL('modo') || 'facil';
+
+    let juegoIniciado = false;
+
+    btnIniciarPartida.addEventListener('click', function () {
+        btnIniciarPartida.style.display = 'none'; // Oculta el botón "Iniciar"
+        btnLanzarDado.removeAttribute('disabled'); // Habilita el botón "Lanzar Dado"
+        btnAbandonarPartida.removeAttribute('disabled'); // Habilita el botón "Abandonar"
+        juegoIniciado = true;
+
+        // ... Lógica para iniciar la partida ...
+    });
+
+    btnAbandonarPartida.addEventListener('click', function () {
+        btnIniciarPartida.style.display = 'block'; // Muestra el botón "Iniciar"
+        btnLanzarDado.setAttribute('disabled', 'disabled'); // Deshabilita el botón "Lanzar Dado"
+        btnAbandonarPartida.setAttribute('disabled', 'disabled'); // Deshabilita el botón "Abandonar"
+        btnVolverAJugar.style.display = 'block'; 
+        juegoIniciado = false;
+
+        // ... Lógica para reiniciar la partida ...
+    });
+
+    btnVolverAJugar.addEventListener('click', function () {
+        btnVolverAJugar.style.display = 'none'; // Oculta el botón "Volver a Jugar"
+        btnIniciarPartida.click(); // Simula el clic en el botón "Iniciar Partida"
+    });
 
     // Definición de escaleras y serpientes
     const escalerasYSerpientes = {
@@ -106,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 setTimeout(() => {
                     moverFichaACasilla(fila, columna);
-                }, i * 100);
+                }, i * 1);
             }
     
             jugadorPos = nuevaPosicion;
@@ -141,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                     setTimeout(() => {
                         moverFichaACasilla(fila, columna);
-                    }, (i + nuevaPosicion) * 20);
+                    }, (i + nuevaPosicion) * 10);
                 }
     
                 if (nuevaPosicion === 100) {
@@ -173,5 +203,10 @@ document.addEventListener('DOMContentLoaded', function () {
             jugadorFicha.style.top = topFicha + 'px';
             jugadorFicha.style.left = leftFicha + 'px';
         }
+    }
+
+    function obtenerParametroDeURL(parametro) {
+        const url = new URL(window.location.href);
+        return url.searchParams.get(parametro);
     }
 });
