@@ -129,6 +129,17 @@
     z-index: 1;
 }
 
+.jugador2 {
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 400px;
+    left: 230px;
+    z-index: 1;
+}
+
 #btnSalir {
     margin-bottom: 35px;
     height: 45px;
