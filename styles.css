@@ -127,6 +127,7 @@
     top: 500px;
     left: 230px;
     z-index: 1;
+    transition: all linear 0.5s;
 }
 
 .jugador2 {
@@ -138,6 +139,7 @@
     top: 400px;
     left: 230px;
     z-index: 1;
+    transition: all linear 0.5s;
 }
 
 #btnSalir {
