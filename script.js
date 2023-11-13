@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', function () {
         btnIniciarPartida.click(); // Simula el clic en el botón "Iniciar Partida"
     });
 
-    // Definición de escaleras y serpientes
-    const escalerasYSerpientes = {
+    // Definición de escaleras y serpientes modo dificil
+    const escalerasYSerpientesDificil = {
         4: 56,
         12: 50,
         14: 55,
@@ -48,12 +48,42 @@ document.addEventListener('DOMContentLoaded', function () {
         96: 42
     };
 
+    // Definición de escaleras y serpientes modo facil
+    const escalerasYSerpientesFacil = {
+        18: 55,
+        38: 5,
+        39: 82,
+        63: 41,
+        67: 47,
+        49: 87
+    };
+
+    let escalerasYSerpientes;
+
+    if (modo === 'facil'){
+        escalerasYSerpientes = escalerasYSerpientesFacil;
+    } else if (modo === 'dificil'){
+        escalerasYSerpientes = escalerasYSerpientesDificil;
+    } else {
+        escalerasYSerpientes = escalerasYSerpientesFacil;
+    }
+
     const colores = ["color-1", "color-2", "color-3", "color-4", "color-5"];
     const casillas = generarTablero();
 
-    // Inicialmente, coloca la imagen en la casilla [0][0]
+    //Ayuda a colocar la imagen del tablero de acuerdo a la modalidad del juego
     const imagen = document.createElement('img');
-    imagen.src = 'images/modoFacil.png';
+    let imagenModo;
+
+    if (modo === 'facil'){
+        imagenModo = 'images/modoFacil.png';
+    } else if (modo === 'dificil'){
+        imagenModo = 'images/modoDificil.png';
+    } else {
+        imagenModo = 'images/modoFacil.png';
+    }
+
+    imagen.src = imagenModo;
     imagen.alt = 'Escalera';
     imagen.classList.add('imagen-estilo');
     tablero.appendChild(imagen);
