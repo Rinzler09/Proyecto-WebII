@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         btnIniciarPartida.style.display = 'block'; // Muestra el botón "Iniciar"
         btnLanzarDado.setAttribute('disabled', 'disabled'); // Deshabilita el botón "Lanzar Dado"
         btnAbandonarPartida.setAttribute('disabled', 'disabled'); // Deshabilita el botón "Abandonar"
-        btnVolverAJugar.style.display = 'block'; 
+        btnVolverAJugar.style.display = 'block';
         juegoIniciado = false;
 
         // ... Lógica para reiniciar la partida ...
@@ -60,9 +60,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let escalerasYSerpientes;
 
-    if (modo === 'facil'){
+    if (modo === 'facil') {
         escalerasYSerpientes = escalerasYSerpientesFacil;
-    } else if (modo === 'dificil'){
+    } else if (modo === 'dificil') {
         escalerasYSerpientes = escalerasYSerpientesDificil;
     } else {
         escalerasYSerpientes = escalerasYSerpientesFacil;
@@ -75,9 +75,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const imagen = document.createElement('img');
     let imagenModo;
 
-    if (modo === 'facil'){
+    if (modo === 'facil') {
         imagenModo = 'images/modoFacil.png';
-    } else if (modo === 'dificil'){
+    } else if (modo === 'dificil') {
         imagenModo = 'images/modoDificil.png';
     } else {
         imagenModo = 'images/modoFacil.png';
@@ -96,13 +96,19 @@ document.addEventListener('DOMContentLoaded', function () {
     let jugadorPos = 0;
     let jugadorFicha = document.createElement('div');
     jugadorFicha.className = 'jugador';
+    let pcPos = 0;
+    let pcFicha = document.createElement('div');
+    pcFicha.className = 'pc';
+    casillas[9][0].appendChild(pcFicha);
     casillas[9][0].appendChild(jugadorFicha);
 
     btnLanzarDado.addEventListener('click', function () {
         const dado = Math.floor(Math.random() * 6) + 1;
-        resultadoDadoDiv.textContent = 'Resultado del dado: ' + dado;
+        const dadoPc = Math.floor(Math.random() * 6) + 1;
+        resultadoDadoDiv.textContent = 'Resultado del dado: ' + dado + ' y Resultado del dado de PC: ' + dadoPc;
 
         moverJugador(dado);
+        moverComputadora(dadoPc);
     });
 
     function generarTablero() {
@@ -150,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function moverJugador(pasos) {
         const nuevaPosicion = jugadorPos + pasos;
-    
+
         if (nuevaPosicion >= 1 && nuevaPosicion <= 100) {
             // Movimiento normal
             for (let i = jugadorPos + 1; i <= nuevaPosicion; i++) {
@@ -160,50 +166,50 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     numero = 10 * Math.floor((i - 1) / 10) + 1 + (9 - (i - 1) % 10);
                 }
-    
+
                 const fila = 9 - Math.floor((numero - 1) / 10);
                 const columna = (numero - 1) % 10;
-    
+
                 setTimeout(() => {
                     moverFichaACasilla(fila, columna);
                 }, i * 1);
             }
-    
+
             jugadorPos = nuevaPosicion;
-    
+
             // Validación de serpiente o escalera después del movimiento normal
             if (escalerasYSerpientes[nuevaPosicion]) {
                 const diferencia = escalerasYSerpientes[nuevaPosicion] - nuevaPosicion;
                 const mensaje = diferencia > 0
                     ? '¡Has subido por una escalera!'
                     : '¡Has bajado por una serpiente!';
-    
+
                 alert(mensaje);
-    
+
                 jugadorPos = escalerasYSerpientes[nuevaPosicion];
-    
+
                 const pasos = Math.abs(diferencia); // Tomamos el valor absoluto de la diferencia
-    
+
                 // Movemos la ficha retrocediendo o avanzando según la diferencia
                 for (let i = 1; i <= pasos; i++) {
                     const paso = diferencia > 0 ? i : -i; // Avanzar o retroceder
                     const nuevaCasilla = nuevaPosicion + paso;
-    
+
                     let numero;
                     if (Math.floor((nuevaCasilla - 1) / 10) % 2 === 0) {
                         numero = (nuevaCasilla - 1) % 10 + 1 + (10 * Math.floor((nuevaCasilla - 1) / 10));
                     } else {
                         numero = 10 * Math.floor((nuevaCasilla - 1) / 10) + 1 + (9 - (nuevaCasilla - 1) % 10);
                     }
-    
+
                     const fila = 9 - Math.floor((numero - 1) / 10);
                     const columna = (numero - 1) % 10;
-    
+
                     setTimeout(() => {
                         moverFichaACasilla(fila, columna);
                     }, (i + nuevaPosicion) * 10);
                 }
-    
+
                 if (nuevaPosicion === 100) {
                     alert('¡Has ganado!');
                 }
@@ -214,8 +220,76 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     }
-    
-        
+
+    function moverComputadora(pasos) {
+        const nuevaPosicionPc = pcPos + pasos;
+
+        if (nuevaPosicionPc >= 1 && nuevaPosicionPc <= 100) {
+            // Movimiento normal
+            for (let i = pcPos + 1; i <= nuevaPosicionPc; i++) {
+                let numero;
+                if (Math.floor((i - 1) / 10) % 2 === 0) {
+                    numero = (i - 1) % 10 + 1 + (10 * Math.floor((i - 1) / 10));
+                } else {
+                    numero = 10 * Math.floor((i - 1) / 10) + 1 + (9 - (i - 1) % 10);
+                }
+
+                const fila2 = 9 - Math.floor((numero - 1) / 10);
+                const columna2 = (numero - 1) % 10;
+
+                setTimeout(function () {
+                    setTimeout(() => {
+                        moverFichaACasilla2(fila2, columna2);
+                    }, i * 1);
+                }, 2000);//La funcion se ejecuta 2 segundos despues para que la fichaPC vaya despues
+            }
+
+            pcPos = nuevaPosicionPc;
+
+            // Validación de serpiente o escalera después del movimiento normal
+            if (escalerasYSerpientes[nuevaPosicionPc]) {
+                let diferencia = escalerasYSerpientes[nuevaPosicionPc] - nuevaPosicionPc;
+                let mensaje = diferencia > 0
+                    ? '¡La PC subido por una escalera!'
+                    : '¡La PC bajado por una serpiente!';
+
+                alert(mensaje);
+
+                pcPos = escalerasYSerpientes[nuevaPosicionPc];
+
+                let pasos = Math.abs(diferencia); // Tomamos el valor absoluto de la diferencia
+
+                // Movemos la ficha retrocediendo o avanzando según la diferencia
+                for (let i = 1; i <= pasos; i++) {
+                    let paso = diferencia > 0 ? i : -i; // Avanzar o retroceder
+                    let nuevaCasilla = nuevaPosicionPc + paso;
+
+                    let numero;
+                    if (Math.floor((nuevaCasilla - 1) / 10) % 2 === 0) {
+                        numero = (nuevaCasilla - 1) % 10 + 1 + (10 * Math.floor((nuevaCasilla - 1) / 10));
+                    } else {
+                        numero = 10 * Math.floor((nuevaCasilla - 1) / 10) + 1 + (9 - (nuevaCasilla - 1) % 10);
+                    }
+
+                    let fila = 9 - Math.floor((numero - 1) / 10);
+                    let columna = (numero - 1) % 10;
+
+                    setTimeout(() => {
+                        moverFichaACasilla2(fila, columna);
+                    }, (i + nuevaPosicionPc) * 10);
+                }
+
+                if (nuevaPosicionPc === 100) {
+                    alert('¡Has Perdido!');
+                }
+            } else {
+                if (nuevaPosicionPc === 100) {
+                    alert('¡Has Perdido!');
+                }
+            }
+        }
+    }
+
 
     function moverFichaACasilla(fila, columna) {
         if (casillas[fila] && casillas[fila][columna]) {
@@ -232,11 +306,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
             jugadorFicha.style.top = topFicha + 'px';
             jugadorFicha.style.left = leftFicha + 'px';
+
         }
     }
+
+    function moverFichaACasilla2(fila2, columna2) {
+        if (casillas[fila2] && casillas[fila2][columna2]) {
+            let casillaActual = casillas[fila2][columna2];
+            let posicionCSS = casillaActual.getBoundingClientRect();
+
+            let limiteTop = tablero.getBoundingClientRect().top;
+            let limiteLeft = tablero.getBoundingClientRect().left;
+            let limiteBottomPc = tablero.getBoundingClientRect().bottom - pcFicha.clientHeight;
+            let limiteRightPc = tablero.getBoundingClientRect().right - pcFicha.clientWidth;
+
+            let topFichaPc = Math.max(limiteTop, Math.min(limiteBottomPc, posicionCSS.top + window.scrollY + casillaActual.clientHeight / 2 - pcFicha.clientHeight / 2));
+            let leftFichaPc = Math.max(limiteLeft, Math.min(limiteRightPc, posicionCSS.left + casillaActual.clientWidth / 2 - pcFicha.clientWidth / 2));
+
+            pcFicha.style.top = topFichaPc + 'px';
+            pcFicha.style.left = leftFichaPc + 'px';
+        }
+    }
+
 
     function obtenerParametroDeURL(parametro) {
         const url = new URL(window.location.href);
         return url.searchParams.get(parametro);
     }
+
 });

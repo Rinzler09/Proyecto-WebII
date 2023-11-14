@@ -1,281 +1,289 @@
   /* Este documento se usara para los estilos del juego*/
   body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-image: url('images/fondoMenu2.jpg');
-    background-repeat: repeat;
-}
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      background-image: url('images/fondoMenu2.jpg');
+      background-repeat: repeat;
+  }
 
-#menuOptions {
-    margin: 255px auto;
-    background-color: rgb(1, 42, 86);
-    color: aliceblue;
-    border: 2px solid gray;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    text-align: center;
-    width: 30rem;
-}
+  #menuOptions {
+      margin: 255px auto;
+      background-color: rgb(1, 42, 86);
+      color: aliceblue;
+      border: 2px solid gray;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      text-align: center;
+      width: 30rem;
+  }
 
-#btnFacil {
-    cursor: pointer;
-    margin-top: 15px;
-    margin-bottom: 25px;
-    height: 45px;
-    width: 150px;
-    border-radius: 15px;
-    background-color: rgba(24, 255, 240, 0.551);
-    font-weight: bold;
-    font-size: large;
-}
+  #btnFacil {
+      cursor: pointer;
+      margin-top: 15px;
+      margin-bottom: 25px;
+      height: 45px;
+      width: 150px;
+      border-radius: 15px;
+      background-color: rgba(24, 255, 240, 0.551);
+      font-weight: bold;
+      font-size: large;
+  }
 
-#btnFacil:hover {
-    height: 50px;
-    width: 155px;
-}
+  #btnFacil:hover {
+      height: 50px;
+      width: 155px;
+  }
 
-#btnDificil {
-    cursor: pointer;
-    margin-bottom: 35px;
-    height: 45px;
-    width: 150px;
-    border-radius: 15px;
-    background-color: rgba(220, 114, 201, 0.838);
-    font-weight: bold;
-    font-size: large;
-}
+  #btnDificil {
+      cursor: pointer;
+      margin-bottom: 35px;
+      height: 45px;
+      width: 150px;
+      border-radius: 15px;
+      background-color: rgba(220, 114, 201, 0.838);
+      font-weight: bold;
+      font-size: large;
+  }
 
-#btnDificil:hover {
-    height: 50px;
-    width: 155px;
-}
+  #btnDificil:hover {
+      height: 50px;
+      width: 155px;
+  }
 
-#btnInstrucciones {
-    cursor: pointer;
-    margin-bottom: 35px;
-    height: 45px;
-    width: 150px;
-    border-radius: 15px;
-    background-color: rgba(108, 234, 12, 0.838);
-    font-weight: bold;
-    font-size: large;
-}
+  #btnInstrucciones {
+      cursor: pointer;
+      margin-bottom: 35px;
+      height: 45px;
+      width: 150px;
+      border-radius: 15px;
+      background-color: rgba(108, 234, 12, 0.838);
+      font-weight: bold;
+      font-size: large;
+  }
 
-#btnInstrucciones:hover {
-    height: 50px;
-    width: 155px;
-}
+  #btnInstrucciones:hover {
+      height: 50px;
+      width: 155px;
+  }
 
-#divInstruc {
+  #divInstruc {
 
-    margin: 100px auto;
-    border: 2px solid gray;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    text-align: center;
-    width: 36rem;
-    height: 47rem;
-    background-image: url('images/Instrucciones.jpg');
-}
+      margin: 100px auto;
+      border: 2px solid gray;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      text-align: center;
+      width: 36rem;
+      height: 47rem;
+      background-image: url('images/Instrucciones.jpg');
+  }
 
-#juego {
-    text-align: center;
-}
+  #juego {
+      text-align: center;
+  }
 
-.casilla {
-    width: 45px;
-    height: 45px;
-    display: inline-block;
-    text-align: center;
-    line-height: 50px;
-    /*border: 1px solid #000;*/
-    opacity: 1;
-}
+  .casilla {
+      width: 45px;
+      height: 45px;
+      display: inline-block;
+      text-align: center;
+      line-height: 50px;
+      /*border: 1px solid #000;*/
+      opacity: 1;
+  }
 
-.color-1 {
-    background-color: #f1e8f8;
-    color: #f1e8f8;
-}
+  .color-1 {
+      background-color: #f1e8f8;
+      color: #f1e8f8;
+  }
 
-.color-2 {
-    background-color: #f1e8f8;
-    color: #f1e8f8;
-}
+  .color-2 {
+      background-color: #f1e8f8;
+      color: #f1e8f8;
+  }
 
-.color-3 {
-    background-color: #f1e8f8;
-    color: #f1e8f8;
-}
+  .color-3 {
+      background-color: #f1e8f8;
+      color: #f1e8f8;
+  }
 
-.color-4 {
-    background-color: #f1e8f8;
-    color: #f1e8f8;
-}
+  .color-4 {
+      background-color: #f1e8f8;
+      color: #f1e8f8;
+  }
 
-.color-5 {
-    background-color: #f1e8f8;
-    color: #f1e8f8;
-}
+  .color-5 {
+      background-color: #f1e8f8;
+      color: #f1e8f8;
+  }
 
-.jugador {
-    width: 30px;
-    height: 30px;
-    background-color: #0404e2;
-    border-radius: 50%;
-    position: absolute;
-    top: 500px;
-    left: 230px;
-    z-index: 1;
-    transition: all linear 0.5s;
-}
+  .jugador {
+      width: 30px;
+      height: 30px;
+      background-color: #0404e2;
+      border-radius: 50%;
+      position: absolute;
+      top: 500px;
+      left: 230px;
+      z-index: 1;
+      transition: all linear 0.5s;
+  }
 
-.jugador2 {
-    width: 30px;
-    height: 30px;
-    background-color: red;
-    border-radius: 50%;
-    position: absolute;
-    top: 400px;
-    left: 230px;
-    z-index: 1;
-    transition: all linear 0.5s;
-}
+  .pc {
+      width: 30px;
+      height: 30px;
+      background-color: red;
+      border-radius: 50%;
+      position: absolute;
+      top: 500px;
+      left: 210px;
+      z-index: 1;
+      transition: all linear 0.5s;
+  }
 
-#btnSalir {
-    margin-bottom: 35px;
-    height: 45px;
-    width: 150px;
-    border-radius: 15px;
-    background-color: rgba(220, 114, 201, 0.838);
-    font-weight: bold;
-    font-size: large;
-}
+  #btnSalir {
+      margin-bottom: 35px;
+      height: 45px;
+      width: 150px;
+      border-radius: 15px;
+      background-color: rgba(220, 114, 201, 0.838);
+      font-weight: bold;
+      font-size: large;
+  }
 
-#btnSalir:hover {
-    height: 50px;
-    width: 155px;
-}
+  #btnSalir:hover {
+      height: 50px;
+      width: 155px;
+  }
 
-#resultadoDado{
-    color: white;
-}
+  #resultadoDado {
+      color: white;
+  }
 
-#btnAtras {
-    cursor: pointer;
-    margin-bottom: 35px;
-    height: 45px;
-    width: 150px;
-    border-radius: 15px;
-    background-color: rgb(255, 0, 170);
-    font-weight: bold;
-    font-size: large;
-}
+  #btnAtras {
+      cursor: pointer;
+      margin-bottom: 35px;
+      height: 45px;
+      width: 150px;
+      border-radius: 15px;
+      background-color: rgb(255, 0, 170);
+      font-weight: bold;
+      font-size: large;
+  }
 
-#btnAtras:hover {
-    height: 50px;
-    width: 155px;
-}
+  #btnAtras:hover {
+      height: 50px;
+      width: 155px;
+  }
 
-nav {
-    background-color: #333;
-    height: 70px;
-}
+  nav {
+      background-color: #333;
+      height: 70px;
+  }
 
-#menu2 {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
+  #menu2 {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+  }
 
-#menu2 li {
-    float: left;
-}
+  #menu2 li {
+      float: left;
+  }
 
-#menu2 a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
+  #menu2 a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+  }
 
-#menu2 a:hover {
-    background-color: #ddd;
-    color: black;
-    height: 40px;
-}    
+  #menu2 a:hover {
+      background-color: #ddd;
+      color: black;
+      height: 40px;
+  }
 
-.imagen-estilo {
-    width: 450px;
-    height: 450px;
-    position: absolute;
-    top: 98px;
-    left: 610px;
-    z-index: 1;
-}
+  .imagen-estilo {
+      width: 450px;
+      height: 450px;
+      position: absolute;
+      top: 98px;
+      left: 610px;
+      z-index: 1;
+  }
 
-#iniciarPartida {
-    margin-top: 15px;
-    margin-bottom: 25px;
-    height: 45px;
-    width: 150px;
-    border-radius: 15px;
-    background-color: #a5c6b1;
-    font-weight: bold;
-    font-size: large;
-}
+  #iniciarPartida {
+      margin-top: 15px;
+      margin-bottom: 25px;
+      height: 45px;
+      width: 150px;
+      border-radius: 15px;
+      background-color: #a5c6b1;
+      font-weight: bold;
+      font-size: large;
+  }
 
-#iniciarPartida:hover {
-    height: 50px;
-    width: 155px;
-}
+  #iniciarPartida:hover {
+      height: 50px;
+      width: 155px;
+  }
 
-#lanzarDado {
-    margin-top: 15px;
-    margin-bottom: 25px;
-    height: 45px;
-    width: 150px;
-    border-radius: 15px;
-    background-color: #d2afae;
-    font-weight: bold;
-    font-size: large;
-}
+  #lanzarDado {
+      margin-top: 15px;
+      margin-bottom: 25px;
+      height: 45px;
+      width: 150px;
+      border-radius: 15px;
+      background-color: #d2afae;
+      font-weight: bold;
+      font-size: large;
+  }
 
-#lanzarDado:hover {
-    height: 50px;
-    width: 155px;
-}
+  #lanzarDado:hover {
+      height: 50px;
+      width: 155px;
+  }
 
-#abandonarPartida {
-    margin-top: 15px;
-    margin-bottom: 25px;
-    height: 45px;
-    width: 150px;
-    border-radius: 15px;
-    background-color: #cc883e;
-    font-weight: bold;
-    font-size: large;
-}
+  #abandonarPartida {
+      margin-top: 15px;
+      margin-bottom: 25px;
+      height: 45px;
+      width: 150px;
+      border-radius: 15px;
+      background-color: #cc883e;
+      font-weight: bold;
+      font-size: large;
+  }
 
-#abandonarPartida:hover {
-    height: 50px;
-    width: 155px;
-}
+  #abandonarPartida:hover {
+      height: 50px;
+      width: 155px;
+  }
 
-#volverAJugar {
-    margin-top: 15px;
-    margin-bottom: 25px;
-    height: 45px;
-    width: 150px;
-    border-radius: 15px;
-    background-color: #f4c88c;
-    font-weight: bold;
-    font-size: large;
-}
+  #volverAJugar {
+      margin-top: 15px;
+      margin-bottom: 25px;
+      height: 45px;
+      width: 150px;
+      border-radius: 15px;
+      background-color: #f4c88c;
+      font-weight: bold;
+      font-size: large;
+  }
 
-#volverAJugar:hover {
-    height: 50px;
-    width: 155px;
-}
+  #volverAJugar:hover {
+      height: 50px;
+      width: 155px;
+  }
+
+  #resultadoDado {
+      background-color: white;
+      color: black;
+      font-weight: bold;
+      margin: auto;
+      width: 400px;
+  }
