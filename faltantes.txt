@@ -1,0 +1,20 @@
+
+Nombre del Jugador
+
+Partidas jugadas Total
+Partidas jugadas en modo facil
+Partidas jugadas en modo dificil
+
+**Graficos**
+Modo facil vs Modo dificil(Comparar contadores de las partidas easy vs hard)
+
+**Estadisticas**
+Total de partidas completadas - Mostrar grafico
+Total de partidas no completadas - Mostrar grafico
+
+**Grafico**
+Partidas ganadas en modo facil
+Partidas ganadas en modo dificil
+
+**Grafico**
+Partidas ganadas en modo dificil vs partidas perdidas en modo dificil
