@@ -15,6 +15,19 @@
       flex-wrap: wrap;
       text-align: center;
       width: 30rem;
+      align-items: center;
+  }
+
+  #inputName{
+      margin-top: 15px;
+      margin-bottom: 25px;
+      height: 45px;
+      width: 150px;
+      border-radius: 15px;
+      font-weight: bold;
+      font-size: large;
+      display: flexbox;
+      text-align: center;   
   }
 
   #btnFacil {

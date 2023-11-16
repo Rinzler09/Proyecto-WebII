@@ -1,4 +1,6 @@
+var namePlayer = document.getElementById("inputName").value;
 document.addEventListener('DOMContentLoaded', function () {
+
     const tablero = document.getElementById('tablero');
     const btnLanzarDado = document.getElementById('lanzarDado');
     const resultadoDadoDiv = document.getElementById('resultadoDado');
@@ -10,6 +12,15 @@ document.addEventListener('DOMContentLoaded', function () {
     let juegoIniciado = false;
 
     btnIniciarPartida.addEventListener('click', function () {
+        //var namePlayer = prompt("Ingresa un nombre de usuario");
+        //alert('Hola ' + namePlayer + ' Estas inciando partida');
+
+
+        if (namePlayer === "") {
+            alert("Debes ingresar tu nombre para iniciar una partida");
+            return;
+        }
+
         btnIniciarPartida.style.display = 'none'; // Oculta el botón "Iniciar"
         btnLanzarDado.removeAttribute('disabled'); // Habilita el botón "Lanzar Dado"
         btnAbandonarPartida.removeAttribute('disabled'); // Habilita el botón "Abandonar"
@@ -17,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // ... Lógica para iniciar la partida ...
     });
+
 
     btnAbandonarPartida.addEventListener('click', function () {
         btnIniciarPartida.style.display = 'block'; // Muestra el botón "Iniciar"
