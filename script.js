@@ -1,4 +1,4 @@
-var namePlayer = document.getElementById("inputName").value;
+
 document.addEventListener('DOMContentLoaded', function () {
 
     const tablero = document.getElementById('tablero');
@@ -12,14 +12,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let juegoIniciado = false;
 
     btnIniciarPartida.addEventListener('click', function () {
-        //var namePlayer = prompt("Ingresa un nombre de usuario");
-        //alert('Hola ' + namePlayer + ' Estas inciando partida');
 
-
-        if (namePlayer === "") {
-            alert("Debes ingresar tu nombre para iniciar una partida");
-            return;
-        }
+        var namePlayer = prompt("Ingresa tu nombre:");
+        // Guardar nombre del jugador en localStorage
+        localStorage.setItem("jugador", namePlayer);
 
         btnIniciarPartida.style.display = 'none'; // Oculta el botón "Iniciar"
         btnLanzarDado.removeAttribute('disabled'); // Habilita el botón "Lanzar Dado"
