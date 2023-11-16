@@ -1,20 +1,46 @@
 
-Nombre del Jugador
 
-Partidas jugadas Total
-Partidas jugadas en modo facil
-Partidas jugadas en modo dificil
+NOTA: FECHA LIMITE A ENTREGAR: SSAABBAADDOO
 
+----------------  Elmer --------------------------
+Nombre del Jugador - ok				
+
+Partidas jugadas Total - Elmer
+Partidas jugadas en modo facil - Elmer
+Partidas jugadas en modo dificil - Elmer
+--------------------------------------------------
+
+
+
+---------------- Yisela  --------------------------
+Crear tabla donde aparezcan todos los registros de los jugadores, cada registro debe llever un boton para mostrar las estadisticas por jugador
+---------------------------------------------------
+
+
+
+---------------- Colman ---------------------------
 **Graficos**
-Modo facil vs Modo dificil(Comparar contadores de las partidas easy vs hard)
+Modo facil vs Modo dificil(Comparar contadores de las partidas easy vs hard) - 
+---------------------------------------------------
 
+
+
+----------------- Josue ---------------------------
 **Estadisticas**
 Total de partidas completadas - Mostrar grafico
 Total de partidas no completadas - Mostrar grafico
+---------------------------------------------------
 
+
+
+---------------- Carlos Perez ----------------------
 **Grafico**
 Partidas ganadas en modo facil
 Partidas ganadas en modo dificil
+----------------------------------------------------
 
+
+----------------- Katheryn Bonilla -----------------
 **Grafico**
 Partidas ganadas en modo dificil vs partidas perdidas en modo dificil
+----------------------------------------------------
