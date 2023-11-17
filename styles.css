@@ -18,7 +18,7 @@
       align-items: center;
   }
 
-  #inputName{
+  #inputName {
       margin-top: 15px;
       margin-bottom: 25px;
       height: 45px;
@@ -27,7 +27,7 @@
       font-weight: bold;
       font-size: large;
       display: flexbox;
-      text-align: center;   
+      text-align: center;
   }
 
   #btnFacil {
@@ -299,4 +299,16 @@
       font-weight: bold;
       margin: auto;
       width: 400px;
+  }
+
+  .botones {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0 auto;
+      justify-content: center;
+  }
+
+  .botones>button {
+      margin: 0 10px;
   }

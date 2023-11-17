@@ -31,13 +31,19 @@
     //var playercount = parseInt(localStorage.getItem("contadorJugadores")) || 0; NO SIRVE ESTA LINEA
     var counter = parseInt(localStorage.getItem("contador")) || 0;;
     var totalGames = parseInt(localStorage.getItem("partidasTotales")) || 0;
+    var totalEasy = parseInt(localStorage.getItem("partidasFacil")) || 0;
+    var totalDif = parseInt(localStorage.getItem("partidasDificil")) || 0;
     var players = JSON.parse(localStorage.getItem('players')) || [];
+
 
     if (totalGames === 0) {
         var name = prompt("Ingresa un nombre de usuario:");
         players.push(name);
+        localStorage.setItem("jugador", name);
+        totalDif.push(0);
+        totalEasy.push(0);
         localStorage.setItem('players', JSON.stringify(players));// Guardar el arreglo actualizado en el almacenamiento local
-        
+
 
     }
 </script>

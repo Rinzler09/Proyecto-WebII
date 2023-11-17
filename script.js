@@ -26,6 +26,10 @@ document.addEventListener('DOMContentLoaded', function () {
         btnAbandonarPartida.setAttribute('disabled', 'disabled'); // Deshabilita el botón "Abandonar"
         btnVolverAJugar.style.display = 'block';
         juegoIniciado = false;
+        let salir = confirm("Esta Seguro que desea abandonar la partida?");
+        if (salir === true) {
+            window.location.href = 'index.html';//Regresa al menu principal
+        }
 
         // ... Lógica para reiniciar la partida ...
     });
@@ -62,14 +66,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let escalerasYSerpientes;
     var totalCounter = localStorage.getItem("partidasTotales") || 0;
+    var EasyCounter = localStorage.getItem("partidasFacil") || 0;
+    var DifCounter = localStorage.getItem("partidasDificil") || 0;
     if (modo === 'facil') {
         escalerasYSerpientes = escalerasYSerpientesFacil;
         totalCounter++;
+        EasyCounter++;
         localStorage.setItem("partidasTotales", totalCounter);
+        localStorage.setItem("partidasFacil", EasyCounter);
     } else if (modo === 'dificil') {
         totalCounter++;
+        DifCounter++;
         escalerasYSerpientes = escalerasYSerpientesDificil;
         localStorage.setItem("partidasTotales", totalCounter);
+        localStorage.setItem("partidasDificil", DifCounter);
     } else {
         totalCounter++;
         escalerasYSerpientes = escalerasYSerpientesFacil;

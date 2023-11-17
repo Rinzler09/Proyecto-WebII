@@ -20,15 +20,21 @@
         <br>
         <div id="tablero"></div><br>
         <div id="resultadoDado"></div>
-        <button id="iniciarPartida">Iniciar Partida</button>
-        <button id="lanzarDado" disabled>Lanzar Dado</button>
-        <button id="abandonarPartida" disabled>Abandonar Partida</button>
-        <button id="volverAJugar" disabled>Volver a Jugar</button>
+        <div class="botones">
+            <button id="iniciarPartida">Iniciar Partida</button>
+            <button id="lanzarDado" disabled>Lanzar Dado</button>
+            <button id="abandonarPartida" disabled>Abandonar Partida</button>
+            <button id="volverAJugar" disabled>Volver a Jugar</button>
+        </div>
+
     </div>
 </body>
 <script>
-       function resetCounters() {
+    function resetCounters() {
         localStorage.setItem("partidasTotales", 0)
+        localStorage.setItem("partidasDificil", 0)
+        localStorage.setItem("partidasFacil", 0)
     }
 </script>
+
 </html>
