@@ -12,7 +12,7 @@
 <body>
     <nav>
         <ul id="menu2">
-            <li><a href="index.html"><button id="btnAtras">Inicio</button></a></li>
+            <li><a href="index.html"><button id="btnAtras" onclick="resetCounters();">Inicio</button></a></li>
             <li><a href="Intrucciones.html"><button id="btnInstrucciones">Ver Instrucciones</button></a></li>
         </ul>
     </nav>
@@ -26,5 +26,9 @@
         <button id="volverAJugar" disabled>Volver a Jugar</button>
     </div>
 </body>
-
+<script>
+       function resetCounters() {
+        localStorage.setItem("partidasTotales", 0)
+    }
+</script>
 </html>

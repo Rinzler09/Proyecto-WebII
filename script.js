@@ -1,6 +1,5 @@
 
 document.addEventListener('DOMContentLoaded', function () {
-
     const tablero = document.getElementById('tablero');
     const btnLanzarDado = document.getElementById('lanzarDado');
     const resultadoDadoDiv = document.getElementById('resultadoDado');
@@ -12,11 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
     let juegoIniciado = false;
 
     btnIniciarPartida.addEventListener('click', function () {
-
-        var namePlayer = prompt("Ingresa tu nombre:");
-        // Guardar nombre del jugador en localStorage
-        localStorage.setItem("jugador", namePlayer);
-
         btnIniciarPartida.style.display = 'none'; // Oculta el botón "Iniciar"
         btnLanzarDado.removeAttribute('disabled'); // Habilita el botón "Lanzar Dado"
         btnAbandonarPartida.removeAttribute('disabled'); // Habilita el botón "Abandonar"
@@ -67,13 +61,19 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     let escalerasYSerpientes;
-
+    var totalCounter = localStorage.getItem("partidasTotales") || 0;
     if (modo === 'facil') {
         escalerasYSerpientes = escalerasYSerpientesFacil;
+        totalCounter++;
+        localStorage.setItem("partidasTotales", totalCounter);
     } else if (modo === 'dificil') {
+        totalCounter++;
         escalerasYSerpientes = escalerasYSerpientesDificil;
+        localStorage.setItem("partidasTotales", totalCounter);
     } else {
+        totalCounter++;
         escalerasYSerpientes = escalerasYSerpientesFacil;
+        localStorage.setItem("partidasTotales", totalCounter);
     }
 
     const colores = ["color-1", "color-2", "color-3", "color-4", "color-5"];
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
     btnLanzarDado.addEventListener('click', function () {
         const dado = Math.floor(Math.random() * 6) + 1;
         const dadoPc = Math.floor(Math.random() * 6) + 1;
-        resultadoDadoDiv.textContent = 'Resultado del dado: ' + dado + ' y Resultado del dado de PC: ' + dadoPc;
+        resultadoDadoDiv.textContent = 'Dado de ' + localStorage.getItem("jugador") + ': ' + dado + '    ||    Dado del PC: ' + dadoPc;
 
         moverJugador(dado);
         moverComputadora(dadoPc);
