@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     const tablero = document.getElementById('tablero');
     const btnLanzarDado = document.getElementById('lanzarDado');
@@ -7,9 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnAbandonarPartida = document.getElementById('abandonarPartida');
     const btnVolverAJugar = document.getElementById('volverAJugar');
     const modo = obtenerParametroDeURL('modo') || 'facil';
-    var contadorGanadasFacil = 0, contadorPerdidasFacil = 0, contadorGanadasDif = 0, contadorPedridasDif = 0;
-
-
+    var contadorGanadasFacil = 0, contadorPerdidasFacil = 0, contadorGanadasDif = 0, contadorPedridasDif = 0, contadorAbandonadas = 0;
 
     let juegoIniciado = false;
 
@@ -22,20 +19,48 @@ document.addEventListener('DOMContentLoaded', function () {
         // ... Lógica para iniciar la partida ...
     });
 
-
-    btnAbandonarPartida.addEventListener('click', function () {
-        btnIniciarPartida.style.display = 'block'; // Muestra el botón "Iniciar"
-        btnLanzarDado.setAttribute('disabled', 'disabled'); // Deshabilita el botón "Lanzar Dado"
-        btnAbandonarPartida.setAttribute('disabled', 'disabled'); // Deshabilita el botón "Abandonar"
-        btnVolverAJugar.style.display = 'block';
-        juegoIniciado = false;
-        let salir = confirm("Esta Seguro que desea abandonar la partida?");
-        if (salir === true) {
-            window.location.href = 'index.html';//Regresa al menu principal
+    function resetearPosicionJugador() {
+        if (jugadorFicha) {
+            jugadorPos = 0;
+            moverFichaACasilla(9, 0);
         }
+    }
+    
+    function resetearPosicionComputadora() {
+        if (pcFicha) {
+            pcPos = 0;
+            moverFichaACasilla2(9, 0);
+        }
+    }
+    
+    
+    
+    btnAbandonarPartida.addEventListener('click', function () {
+        btnIniciarPartida.style.display = 'block';
+        btnLanzarDado.setAttribute('disabled', 'disabled');
+        btnAbandonarPartida.setAttribute('disabled', 'disabled');
 
-        // ... Lógica para reiniciar la partida ...
+        juegoIniciado = false;
+
+        let salir = confirm("¿Está seguro de que desea abandonar la partida?");
+
+        if (salir === true) {
+            incrementarContadorAbandonadas(); // Llama a la función para incrementar el contador
+            resetearPosicionJugador(); // Resetear posición del jugador
+            resetearPosicionComputadora(); // Resetear posición de la computadora
+            window.location.href = 'index.html';
+        }
     });
+
+    function incrementarContadorAbandonadas() {
+        contadorAbandonadas = parseInt(localStorage.getItem("partidasAbandonadas")) || 0;
+        contadorAbandonadas++;
+        localStorage.setItem("partidasAbandonadas", contadorAbandonadas);
+    }
+
+
+    
+    
 
     // Definición de escaleras y serpientes modo dificil
     const escalerasYSerpientesDificil = {
@@ -66,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var totalCounter = localStorage.getItem("partidasTotales") || 0;
     var EasyCounter = localStorage.getItem("partidasFacil") || 0;
     var DifCounter = localStorage.getItem("partidasDificil") || 0;
+    var counterAbandono = parseInt(localStorage.getItem("partidasAbandonadas")) || 0;
 
 
     if (modo === 'facil') {
@@ -76,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem("partidasFacil", EasyCounter);
         var WinOnEasy = localStorage.getItem("partidasGanadasFacil") || 0;
         var LoseOnEasy = localStorage.getItem("partidasPerdidasFacil") || 0;
+        var Abandono = localStorage.getItem("partidasAbandonadas") || 0;
     } else if (modo === 'dificil') {
         totalCounter++;
         DifCounter++;
@@ -84,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem("partidasDificil", DifCounter);
         var WinOnDificult = localStorage.getItem("partidasGanadasDificil") || 0;
         var LoseOnDificult = localStorage.getItem("partidasPerdidasDificil") || 0;
+        var Abandono = localStorage.getItem("partidaAbandonada") || 0;
     } else {
         totalCounter++;
         escalerasYSerpientes = escalerasYSerpientesFacil;
