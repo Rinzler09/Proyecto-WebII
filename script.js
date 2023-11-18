@@ -7,10 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnAbandonarPartida = document.getElementById('abandonarPartida');
     const btnVolverAJugar = document.getElementById('volverAJugar');
     const modo = obtenerParametroDeURL('modo') || 'facil';
-    var contadorGanadasFacil = 0;
-    var contadorPerdidasFacil = 0;
-    var contadorGanadasDif = 0;
-    var contadorPedridasDif = 0;
+    var contadorGanadasFacil = 0, contadorPerdidasFacil = 0, contadorGanadasDif = 0, contadorPedridasDif = 0;
+
+
 
     let juegoIniciado = false;
 
@@ -236,9 +235,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     alert('¡Has ganado!');
                     if (modo === 'facil') {
                         contadorGanadasFacil++;
+                        //couterWinEasy.push(0);
+                        localStorage.setItem("contadorGanadasFacil", contadorGanadasFacil);
+
                     }
                     else if (modo === 'dificil') {
                         contadorGanadasDif++;
+                        //couterWinHard.push(0);
+                        localStorage.setItem("contadorGanadasDificil", contadorGanadasDif);
+                        btnLanzarDado.setAttribute('disabled');
                     }
                 }
             } else {
@@ -315,9 +320,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     alert('¡Has Perdido!');
                     if (modo === 'facil') {
                         contadorPerdidasFacil++;
+                        localStorage.setItem("contadorPerdidasFacil", contadorPerdidasFacil);
+                        btnLanzarDado.setAttribute('disabled');
                     }
                     else if (modo === 'dificil') {
                         contadorPedridasDif++;
+                        localStorage.setItem("contadorPerdidasFacil", contadorPedridasDif);
+                        btnLanzarDado.setAttribute('disabled');
                     }
                 }
             } else {

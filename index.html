@@ -35,6 +35,13 @@
     var totalDif = parseInt(localStorage.getItem("partidasDificil")) || 0;
     var players = JSON.parse(localStorage.getItem('players')) || [];
 
+    //
+    var couterWinEasy = parseInt(localStorage.getItem("contadorGanadasFacil")) || 0;
+    var couterWinHard = parseInt(localStorage.getItem("contadorGanadasDificil")) || 0;
+    var couterLostEasy = parseInt(localStorage.getItem("contadorPerdidasFacil")) || 0;
+    var couterLostHard = parseInt(localStorage.getItem("contadorPerdidasDificil")) || 0;
+    //
+
 
     if (totalGames === 0) {
         var name = prompt("Ingresa un nombre de usuario:");
@@ -43,13 +50,9 @@
         totalDif.push(0);
         totalEasy.push(0);
         localStorage.setItem('players', JSON.stringify(players));// Guardar el arreglo actualizado en el almacenamiento local
+        localStorage.setItem("contadorPerdidasFacil", JSON.stringify(0));
+        localStorage.setItem("contadorPerdidasFacil", JSON.stringify(0));
     }
-
-    let miArreglo = [
-        { nombre: 'Juan', edad: 25 },
-        { nombre: 'Ana', edad: 30 },
-        
-    ];
 
 
 </script>
