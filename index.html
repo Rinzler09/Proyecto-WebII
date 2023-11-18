@@ -42,6 +42,7 @@
     var partPFacil = parseInt(localStorage.getItem("partidasPerdidasFacil")) || 0;
     var partGDificil = parseInt(localStorage.getItem("partidasGanadasDificil")) || 0;
     var partPDificil = parseInt(localStorage.getItem("partidasPerdidasDificil")) || 0;
+    var partAbandonada = parseInt(localStorage.getItem("partidasAbandonadas")) || 0;
 
 
     //
@@ -49,6 +50,7 @@
     var couterWinHard = parseInt(localStorage.getItem("contadorGanadasDificil")) || 0;
     var couterLostEasy = parseInt(localStorage.getItem("contadorPerdidasFacil")) || 0;
     var couterLostHard = parseInt(localStorage.getItem("contadorPerdidasDificil")) || 0;
+    var counterAbandono = parseInt(localStorage.getItem("contadorAbandonadas")) || 0;
     //
 
 
@@ -66,6 +68,7 @@
         localStorage.setItem('players', JSON.stringify(players));// Guardar el arreglo actualizado en el almacenamiento local
         localStorage.setItem("contadorPerdidasFacil", JSON.stringify(0));
         localStorage.setItem("contadorPerdidasFacil", JSON.stringify(0));
+        localStorage.setItem("contadorAbandonadas", JSON.stringify(0));
     }
 
 
