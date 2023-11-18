@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnAbandonarPartida = document.getElementById('abandonarPartida');
     const btnVolverAJugar = document.getElementById('volverAJugar');
     const modo = obtenerParametroDeURL('modo') || 'facil';
+    var contadorGanadasFacil = 0;
+    var contadorPerdidasFacil = 0;
+    var contadorGanadasDif = 0;
+    var contadorPedridasDif = 0;
 
     let juegoIniciado = false;
 
@@ -230,10 +234,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (nuevaPosicion === 100) {
                     alert('¡Has ganado!');
+                    if (modo === 'facil') {
+                        contadorGanadasFacil++;
+                    }
+                    else if (modo === 'dificil') {
+                        contadorGanadasDif++;
+                    }
                 }
             } else {
                 if (nuevaPosicion === 100) {
                     alert('¡Has ganado!');
+                    contadorGanadasFacil++;
+                }
+                else if (modo === 'dificil') {
+                    contadorGanadasDif++;
                 }
             }
         }
@@ -299,10 +313,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (nuevaPosicionPc === 100) {
                     alert('¡Has Perdido!');
+                    if (modo === 'facil') {
+                        contadorPerdidasFacil++;
+                    }
+                    else if (modo === 'dificil') {
+                        contadorPedridasDif++;
+                    }
                 }
             } else {
                 if (nuevaPosicionPc === 100) {
                     alert('¡Has Perdido!');
+                    if (modo === 'facil') {
+                        contadorPerdidasFacil++;
+                    }
+                    else if (modo === 'dificil') {
+                        contadorPedridasDif++;
+                    }
                 }
             }
         }
