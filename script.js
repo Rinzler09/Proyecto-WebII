@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnAbandonarPartida = document.getElementById('abandonarPartida');
     const btnVolverAJugar = document.getElementById('volverAJugar');
     const modo = obtenerParametroDeURL('modo') || 'facil';
+    var contadorGanadasFacil = 0, contadorPerdidasFacil = 0, contadorGanadasDif = 0, contadorPedridasDif = 0;
+
+
 
     let juegoIniciado = false;
 
@@ -233,18 +236,32 @@ document.addEventListener('DOMContentLoaded', function () {
                     btnLanzarDado.style.display = 'none';
                     alert('¡Has ganado!');
                     if (modo === 'facil') {
+
                         WinOnEasy++;
                         localStorage.setItem("partidasGanadasFacil", WinOnEasy);
                     }
                     if (modo === 'dificil') {
                         WinOnDificult++;
                         localStorage.setItem("partidasGanadasDificil", WinOnDificult);
+
+                        contadorGanadasFacil++;
+                        //couterWinEasy.push(0);
+                        localStorage.setItem("contadorGanadasFacil", contadorGanadasFacil);
+
+                    }
+                    else if (modo === 'dificil') {
+                        contadorGanadasDif++;
+                        //couterWinHard.push(0);
+                        localStorage.setItem("contadorGanadasDificil", contadorGanadasDif);
+                        btnLanzarDado.setAttribute('disabled');
+
                     }
                 }
             } else {
                 if (nuevaPosicion === 100) {
                     btnLanzarDado.style.display = 'none';
                     alert('¡Has ganado!');
+
                     if (modo === 'facil') {
                         WinOnEasy++;
                         localStorage.setItem("partidasGanadasFacil", WinOnEasy);
@@ -253,6 +270,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         WinOnDificult++;
                         localStorage.setItem("partidasGanadasDificil", WinOnDificult);
                     }
+
+                    contadorGanadasFacil++;
+                }
+                else if (modo === 'dificil') {
+                    contadorGanadasDif++;
+
                 }
             }
         }
@@ -320,12 +343,23 @@ document.addEventListener('DOMContentLoaded', function () {
                     btnLanzarDado.style.display = 'none';
                     alert('¡Has Perdido!');
                     if (modo === 'facil') {
+
                         LoseOnEasy++;
                         localStorage.setItem("partidasPerdidasFacil", LoseOnEasy);
                     }
                     if (modo === 'dificil') {
                         LoseOnDificult++;
                         localStorage.setItem("partidasPerdidasDificil", LoseOnDificult);
+
+                        contadorPerdidasFacil++;
+                        localStorage.setItem("contadorPerdidasFacil", contadorPerdidasFacil);
+                        btnLanzarDado.setAttribute('disabled');
+                    }
+                    else if (modo === 'dificil') {
+                        contadorPedridasDif++;
+                        localStorage.setItem("contadorPerdidasFacil", contadorPedridasDif);
+                        btnLanzarDado.setAttribute('disabled');
+
                     }
                 }
             } else {
@@ -333,12 +367,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     btnLanzarDado.style.display = 'none';
                     alert('¡Has Perdido!');
                     if (modo === 'facil') {
+
                         LoseOnEasy++;
                         localStorage.setItem("partidasPerdidasFacil", LoseOnEasy);
                     }
                     if (modo === 'dificil') {
                         LoseOnDificult++;
                         localStorage.setItem("partidasPerdidasDificil", LoseOnDificult);
+
+                        contadorPerdidasFacil++;
+                    }
+                    else if (modo === 'dificil') {
+                        contadorPedridasDif++;
+
                     }
                 }
             }
