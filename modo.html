@@ -25,7 +25,7 @@
         <div class="botones">
             <button id="iniciarPartida">Iniciar Partida</button>
             <button id="lanzarDado" disabled>Lanzar Dado</button>
-            <button id="abandonarPartida" disabled onclick="contadorAbandonadas();">Abandonar Partida</button>
+            <button id="abandonarPartida" disabled onclick="incrementarContadorAbandonadas();">Abandonar Partida</button>
         </div>
 
     </div>
@@ -39,6 +39,7 @@
         localStorage.setItem("partidasPerdidasFacil", 0)
         localStorage.setItem("partidasGanadasDificil", 0)
         localStorage.setItem("partidasPerdidasDificil", 0)
+        localStorage.setItem("partidasAbandonadas", 0)
 
 
     }
