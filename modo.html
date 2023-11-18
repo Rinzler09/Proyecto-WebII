@@ -12,8 +12,10 @@
 <body>
     <nav>
         <ul id="menu2">
-            <li><a href="index.html"><button id="btnAtras" onclick="resetCounters();">Inicio</button></a></li>
+            <li><a href="index.html"><button id="btnAtras"
+                        onclick="resetCounters(); contadorAbandonadas();">Inicio</button></a></li>
             <li><a href="Intrucciones.html"><button id="btnInstrucciones">Ver Instrucciones</button></a></li>
+            <li><a href="estadisticas.html" target="_blank"><button id="btnStats">Ver Estadisticas</button></a></li>
         </ul>
     </nav>
     <div id="juego">
@@ -23,8 +25,7 @@
         <div class="botones">
             <button id="iniciarPartida">Iniciar Partida</button>
             <button id="lanzarDado" disabled>Lanzar Dado</button>
-            <button id="abandonarPartida" disabled>Abandonar Partida</button>
-            <button id="volverAJugar" disabled>Volver a Jugar</button>
+            <button id="abandonarPartida" disabled onclick="contadorAbandonadas();">Abandonar Partida</button>
         </div>
 
     </div>
@@ -34,6 +35,12 @@
         localStorage.setItem("partidasTotales", 0)
         localStorage.setItem("partidasDificil", 0)
         localStorage.setItem("partidasFacil", 0)
+        localStorage.setItem("partidasGanadasFacil", 0)
+        localStorage.setItem("partidasPerdidasFacil", 0)
+        localStorage.setItem("partidasGanadasDificil", 0)
+        localStorage.setItem("partidasPerdidasDificil", 0)
+
+
     }
 </script>
 

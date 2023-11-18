@@ -312,3 +312,19 @@
   .botones>button {
       margin: 0 10px;
   }
+
+  #btnStats {
+      cursor: pointer;
+      margin-bottom: 35px;
+      height: 45px;
+      width: 150px;
+      border-radius: 15px;
+      background-color: rgb(200, 255, 0);
+      font-weight: bold;
+      font-size: large;
+  }
+
+  #btnStats:hover {
+      height: 50px;
+      width: 155px;
+  }

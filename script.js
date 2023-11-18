@@ -34,11 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // ... Lógica para reiniciar la partida ...
     });
 
-    btnVolverAJugar.addEventListener('click', function () {
-        btnVolverAJugar.style.display = 'none'; // Oculta el botón "Volver a Jugar"
-        btnIniciarPartida.click(); // Simula el clic en el botón "Iniciar Partida"
-    });
-
     // Definición de escaleras y serpientes modo dificil
     const escalerasYSerpientesDificil = {
         4: 56,
@@ -68,18 +63,24 @@ document.addEventListener('DOMContentLoaded', function () {
     var totalCounter = localStorage.getItem("partidasTotales") || 0;
     var EasyCounter = localStorage.getItem("partidasFacil") || 0;
     var DifCounter = localStorage.getItem("partidasDificil") || 0;
+
+
     if (modo === 'facil') {
         escalerasYSerpientes = escalerasYSerpientesFacil;
         totalCounter++;
         EasyCounter++;
         localStorage.setItem("partidasTotales", totalCounter);
         localStorage.setItem("partidasFacil", EasyCounter);
+        var WinOnEasy = localStorage.getItem("partidasGanadasFacil") || 0;
+        var LoseOnEasy = localStorage.getItem("partidasPerdidasFacil") || 0;
     } else if (modo === 'dificil') {
         totalCounter++;
         DifCounter++;
         escalerasYSerpientes = escalerasYSerpientesDificil;
         localStorage.setItem("partidasTotales", totalCounter);
         localStorage.setItem("partidasDificil", DifCounter);
+        var WinOnDificult = localStorage.getItem("partidasGanadasDificil") || 0;
+        var LoseOnDificult = localStorage.getItem("partidasPerdidasDificil") || 0;
     } else {
         totalCounter++;
         escalerasYSerpientes = escalerasYSerpientesFacil;
@@ -229,11 +230,29 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 if (nuevaPosicion === 100) {
+                    btnLanzarDado.style.display = 'none';
                     alert('¡Has ganado!');
+                    if (modo === 'facil') {
+                        WinOnEasy++;
+                        localStorage.setItem("partidasGanadasFacil", WinOnEasy);
+                    }
+                    if (modo === 'dificil') {
+                        WinOnDificult++;
+                        localStorage.setItem("partidasGanadasDificil", WinOnDificult);
+                    }
                 }
             } else {
                 if (nuevaPosicion === 100) {
+                    btnLanzarDado.style.display = 'none';
                     alert('¡Has ganado!');
+                    if (modo === 'facil') {
+                        WinOnEasy++;
+                        localStorage.setItem("partidasGanadasFacil", WinOnEasy);
+                    }
+                    if (modo === 'dificil') {
+                        WinOnDificult++;
+                        localStorage.setItem("partidasGanadasDificil", WinOnDificult);
+                    }
                 }
             }
         }
@@ -298,11 +317,29 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 if (nuevaPosicionPc === 100) {
+                    btnLanzarDado.style.display = 'none';
                     alert('¡Has Perdido!');
+                    if (modo === 'facil') {
+                        LoseOnEasy++;
+                        localStorage.setItem("partidasPerdidasFacil", LoseOnEasy);
+                    }
+                    if (modo === 'dificil') {
+                        LoseOnDificult++;
+                        localStorage.setItem("partidasPerdidasDificil", LoseOnDificult);
+                    }
                 }
             } else {
                 if (nuevaPosicionPc === 100) {
+                    btnLanzarDado.style.display = 'none';
                     alert('¡Has Perdido!');
+                    if (modo === 'facil') {
+                        LoseOnEasy++;
+                        localStorage.setItem("partidasPerdidasFacil", LoseOnEasy);
+                    }
+                    if (modo === 'dificil') {
+                        LoseOnDificult++;
+                        localStorage.setItem("partidasPerdidasDificil", LoseOnDificult);
+                    }
                 }
             }
         }
