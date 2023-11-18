@@ -25,16 +25,16 @@ document.addEventListener('DOMContentLoaded', function () {
             moverFichaACasilla(9, 0);
         }
     }
-    
+
     function resetearPosicionComputadora() {
         if (pcFicha) {
             pcPos = 0;
             moverFichaACasilla2(9, 0);
         }
     }
-    
-    
-    
+
+
+
     btnAbandonarPartida.addEventListener('click', function () {
         btnIniciarPartida.style.display = 'block';
         btnLanzarDado.setAttribute('disabled', 'disabled');
@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    
-    
+
+
 
     // Definición de escaleras y serpientes modo dificil
     const escalerasYSerpientesDificil = {
@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var totalCounter = localStorage.getItem("partidasTotales") || 0;
     var EasyCounter = localStorage.getItem("partidasFacil") || 0;
     var DifCounter = localStorage.getItem("partidasDificil") || 0;
+    var CompletedGames = parseInt(localStorage.getItem("partidasCompletadas")) || 0;
     var counterAbandono = parseInt(localStorage.getItem("partidasAbandonadas")) || 0;
 
 
@@ -266,11 +267,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (modo === 'facil') {
 
                         WinOnEasy++;
+                        CompletedGames = CompletedGames + WinOnEasy;
                         localStorage.setItem("partidasGanadasFacil", WinOnEasy);
+                        localStorage.setItem("partidasCompletadas", CompletedGames);
                     }
                     if (modo === 'dificil') {
                         WinOnDificult++;
+                        CompletedGames = CompletedGames + WinOnDificult;
                         localStorage.setItem("partidasGanadasDificil", WinOnDificult);
+                        localStorage.setItem("partidasCompletadas", CompletedGames);
 
                         contadorGanadasFacil++;
                         //couterWinEasy.push(0);
@@ -279,9 +284,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     else if (modo === 'dificil') {
                         contadorGanadasDif++;
+                        CompletedGames = CompletedGames + WinOnDificult;
+                        localStorage.setItem("partidasCompletadas", CompletedGames);
                         //couterWinHard.push(0);
                         localStorage.setItem("contadorGanadasDificil", contadorGanadasDif);
-                        btnLanzarDado.setAttribute('disabled');
+                        //btnLanzarDado.setAttribute('disabled');
 
                     }
                 }
@@ -292,10 +299,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     if (modo === 'facil') {
                         WinOnEasy++;
+                        CompletedGames = CompletedGames + WinOnEasy;
                         localStorage.setItem("partidasGanadasFacil", WinOnEasy);
+                        localStorage.setItem("partidasCompletadas", CompletedGames);
                     }
                     if (modo === 'dificil') {
                         WinOnDificult++;
+                        CompletedGames = CompletedGames + WinOnDificult;
+                        localStorage.setItem("partidasCompletadas", CompletedGames);
                         localStorage.setItem("partidasGanadasDificil", WinOnDificult);
                     }
 
@@ -373,10 +384,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (modo === 'facil') {
 
                         LoseOnEasy++;
+                        CompletedGames = CompletedGames + LoseOnEasy;
+                        localStorage.setItem("partidasCompletadas", CompletedGames);
                         localStorage.setItem("partidasPerdidasFacil", LoseOnEasy);
                     }
                     if (modo === 'dificil') {
                         LoseOnDificult++;
+                        CompletedGames = CompletedGames + LoseOnDificult;
+                        localStorage.setItem("partidasCompletadas", CompletedGames);
                         localStorage.setItem("partidasPerdidasDificil", LoseOnDificult);
 
                         contadorPerdidasFacil++;
@@ -397,10 +412,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (modo === 'facil') {
 
                         LoseOnEasy++;
+                        CompletedGames = CompletedGames + LoseOnEasy;
+                        localStorage.setItem("partidasCompletadas", CompletedGames);
                         localStorage.setItem("partidasPerdidasFacil", LoseOnEasy);
                     }
                     if (modo === 'dificil') {
                         LoseOnDificult++;
+                        CompletedGames = CompletedGames + LoseOnDificult;
+                        localStorage.setItem("partidasCompletadas", CompletedGames);
                         localStorage.setItem("partidasPerdidasDificil", LoseOnDificult);
 
                         contadorPerdidasFacil++;
