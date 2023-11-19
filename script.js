@@ -575,6 +575,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+
+
 function generarGraficoModoDificilGanadasPerdidas() {
     // Obtiene la cantidad de partidas ganadas y perdidas en modo difícil desde el almacenamiento local
     var partGDificil = parseInt(localStorage.getItem("partidasGanadasDificil")) || 0;
@@ -614,7 +616,10 @@ function generarGraficoModoDificilGanadasPerdidas() {
     }
 }
 
+// Llamar a la función para generar el gráfico al cargar la página
+generarGraficoModoDificilGanadasPerdidas();
 
+// Tabla estadisticas
 google.charts.load('current', { 'packages': ['table'] });
 google.charts.setOnLoadCallback(drawTable);
 
@@ -655,10 +660,6 @@ function drawTable() {
 }
 
 
-
-
-// Llamar a la función para generar el gráfico al cargar la página
-generarGraficoModoDificilGanadasPerdidas();
 
 // **Grafico** Partidas modo facil vs partidas modo dificil
 
@@ -701,6 +702,7 @@ function generarGraficoPartidasFacilesvsDificiles() {
 // Llamar a la función para generar el gráfico al cargar la página
 generarGraficoPartidasFacilesvsDificiles();
 
+
 // **Grafico** Total de partidas completadas vs total de partidas no completadas
 
 // Función para generar un gráfico con datos del Local Storage
@@ -742,6 +744,7 @@ function generarGraficoPartidasCompletadasNoComple() {
 }
 // Llamar a la función para generar el gráfico al cargar la página
 generarGraficoPartidasCompletadasNoComple();
+
 
 // **Grafico** Partidas ganadas en modo facil vs Partidas ganadas en modo dificil
 

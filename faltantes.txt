@@ -2,6 +2,17 @@
 
 NOTA: FECHA LIMITE A ENTREGAR: SSAABBAADDOO
 
+Partes para el Video:
+
+1. Carlos Artica: Presentacion del grupo, y la funcionalidad del juego, como se genera el tablero.
+2. Milton Paz: Fondo, algo de Css, funcionalidad del Jugador Pc.
+3. Elmer: Todas las Variables del LocalStorage y para que sirve.
+4. Yisela: Como se genera la tabla de estadisticas, mostrar como funciona, que api implemento.
+5. Colman: Explicar como se genera el grafico de Modo facil vs Modo dificil,  funcion:  generarGraficoPartidasFacilesvsDificiles();
+6. Josue: Explicar como se genera el grafico de Total de partidas completadas vs total de partidas no completadas, funcion: generarGraficoPartidasCompletadasNoComple();
+7. Carlos Perez: Explicar como se genera el grafico de Partidas ganadas en modo facil vs Partidas ganadas en modo dificil, generarGraficoPartidasGanadasModofacilvsdif();
+8. Katheryn: Explicar como se genera el grafico de Partidas Ganadas vs Perdidas en Modo Dificil, generarGraficoModoDificilGanadasPerdidas();
+
 ----------------  Elmer --------------------------
 Nombre del Jugador - ok				
 
