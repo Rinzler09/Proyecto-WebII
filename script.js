@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const resultadoDadoDiv = document.getElementById('resultadoDado');
     const btnIniciarPartida = document.getElementById('iniciarPartida');
     const btnAbandonarPartida = document.getElementById('abandonarPartida');
-    const btnVolverAJugar = document.getElementById('volverAJugar');
+    // const btnVolverAJugar = document.getElementById('volverAJugar');
     const modo = obtenerParametroDeURL('modo') || 'facil';
     var contadorGanadasFacil = 0, contadorPerdidasFacil = 0, contadorGanadasDif = 0, contadorPedridasDif = 0, contadorAbandonadas = 0;
 
@@ -458,4 +458,214 @@ document.addEventListener('DOMContentLoaded', function () {
         return url.searchParams.get(parametro);
     }
 
+
+
 });
+
+
+
+
+// function Tablaestadisticas() {
+
+//     var name = localStorage.getItem("jugador", name);
+//     var totalGames = parseInt(localStorage.getItem("partidasTotales",totalGames));
+//     var totalEasy = parseInt(localStorage.getItem("partidasFacil",totalEasy));
+//     var totalDif = parseInt(localStorage.getItem("partidasDificil",totalDif));
+//     //concatenar toda la informacion obtenida como un registro                                                                   creando boton ver, para ver estadisticas     
+//     var registro = "<tr><td>" + name + "</td><td>" + totalGames + "</td><td>" + totalEasy + "</td><td>" + totalDif;
+//     var fila = document.createElement("tr"); //objeto fila, con toda la informacion de la variable registro
+//     fila.innerHTML = registro; // tranferir la informacion de registro a la fila
+
+//     //diciendole que esa fila con la informacion obtenida, pertenece a la tabla grilla
+//     document.getElementById("grilla").appendChild(fila);
+// }
+
+
+// function Tablaestadisticas() {
+//     var name = localStorage.getItem("jugador");
+//     var totalGames = parseInt(localStorage.getItem("partidasTotales")) || 0;
+//     var totalEasy = parseInt(localStorage.getItem("partidasFacil")) || 0;
+//     var totalDif = parseInt(localStorage.getItem("partidasDificil")) || 0;
+
+//     // Crear la fila con los datos
+//     var registro = "<tr><td>" + name + "</td><td>" + totalGames + "</td><td>" + totalEasy + "</td><td>" + totalDif + "</td><td><button onclick='verEstadisticas(\"" + name + "\");'>Ver</button></td></tr>";
+//     var fila = document.createElement("tr");
+//     fila.innerHTML = registro;
+
+//     // Añadir la fila a la tabla con el id 'grilla'
+//     document.getElementById("grilla").appendChild(fila);
+// }
+
+// Función para ver estadísticas individuales de un jugador
+// function verEstadisticas(nombre) {
+//     // Aquí puedes implementar la lógica para mostrar las estadísticas individuales de un jugador
+//     alert("Ver estadísticas de " + nombre);
+// }
+// Tablaestadisticas();
+
+        
+// **Grafico** Partidas ganadas en modo dificil vs partidas perdidas en modo dificil
+     
+// Función para generar un gráfico con datos del Local Storage
+function generarGraficoModoDificilGanadasPerdidas() {
+    // Obtener datos del Local Storage
+
+    var partGDificil = parseInt(localStorage.getItem("partidasGanadasDificil")) || 0;
+    var partPDificil = parseInt(localStorage.getItem("partidasPerdidasDificil")) || 0;
+
+    // Cargar la biblioteca Google Charts
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Función para dibujar el gráfico
+    function drawChart() {
+        // Crear un array con los datos
+        var data = google.visualization.arrayToDataTable([
+            ['Partidas Modo Dificil', 'Partidas ganadas  vs partidas perdidas'],
+            ['Partidas Ganadas', partGDificil],
+            ['Partidas Perdidas', partPDificil]
+        ]);
+
+        // Opciones del gráfico
+        var options = {
+            title: 'Partidas Ganadas vs Perdidas en Modo Dificil',
+            pieHole: 0.4,
+            backgroundColor: {
+                fill: 'none'
+            },
+             width: 500,  // Ajusta el ancho del gráfico
+             height: 400  // Ajusta la altura del gráfico
+        };
+
+        // Crear el gráfico y colocarlo en un contenedor HTML con el id 'chart_div'
+        var chart = new google.visualization.PieChart(document.getElementById('pieChart4'));
+        chart.draw(data, options);
+    }
+}
+// Llamar a la función para generar el gráfico al cargar la página
+generarGraficoModoDificilGanadasPerdidas();
+
+// **Grafico** Partidas modo facil vs partidas modo dificil
+     
+// Función para generar un gráfico con datos del Local Storage
+function generarGraficoPartidasFacilesvsDificiles() {
+    // Obtener datos del Local Storage
+
+    var totalEasy = parseInt(localStorage.getItem("partidasFacil")) || 0;
+    var totalDif = parseInt(localStorage.getItem("partidasDificil")) || 0;
+
+    // Cargar la biblioteca Google Charts
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Función para dibujar el gráfico
+    function drawChart() {
+        // Crear un array con los datos
+        var data = google.visualization.arrayToDataTable([
+            ['Partidas Totales', 'Partidas Jugadas en Modo Facil  vs Partidas Jugadas en Modo Dificil'],
+            ['Partidas Modo Facil', totalEasy],
+            ['Partidas Modo Dificil', totalDif]
+        ]);
+
+        // Opciones del gráfico
+        var options = {
+            title: 'Partidas Jugadas en Modo Facil  vs Partidas Jugadas en Modo Dificil',
+            pieHole: 0.4,
+            backgroundColor: {
+                fill: 'none'
+            },
+             width: 500,  // Ajusta el ancho del gráfico
+             height: 400  // Ajusta la altura del gráfico
+        };
+
+        // Crear el gráfico y colocarlo en un contenedor HTML con el id 'chart_div'
+        var chart = new google.visualization.PieChart(document.getElementById('pieChart'));
+        chart.draw(data, options);
+    }
+}
+// Llamar a la función para generar el gráfico al cargar la página
+generarGraficoPartidasFacilesvsDificiles();
+
+// **Grafico** Total de partidas completadas vs total de partidas no completadas
+     
+// Función para generar un gráfico con datos del Local Storage
+function generarGraficoPartidasCompletadasNoComple() {
+    // Obtener datos del Local Storage
+
+    var partAbandonada = parseInt(localStorage.getItem("partidasAbandonadas")) || 0;
+    var totalEasy = parseInt(localStorage.getItem("partidasFacil")) || 0;
+    var totalDif = parseInt(localStorage.getItem("partidasDificil")) || 0;
+
+    // Cargar la biblioteca Google Charts
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Función para dibujar el gráfico
+    function drawChart() {
+        // Crear un array con los datos
+        var data = google.visualization.arrayToDataTable([
+            ['Partidas Totales', 'Total de partidas completadas vs total de partidas no completadas'],
+            ['Partidas Completadas', totalEasy+totalDif],
+            ['Partidas No Completadas', partAbandonada]
+        ]);
+
+        // Opciones del gráfico
+        var options = {
+            title: 'Total de partidas completadas vs total de partidas no completadas',
+            pieHole: 0.4,
+            backgroundColor: {
+                fill: 'none'
+            },
+             width: 500,  // Ajusta el ancho del gráfico
+             height: 400  // Ajusta la altura del gráfico
+        };
+
+        // Crear el gráfico y colocarlo en un contenedor HTML con el id 'chart_div'
+        var chart = new google.visualization.PieChart(document.getElementById('pieChart2'));
+        chart.draw(data, options);
+    }
+}
+// Llamar a la función para generar el gráfico al cargar la página
+generarGraficoPartidasCompletadasNoComple();
+
+// **Grafico** Partidas ganadas en modo facil vs Partidas ganadas en modo dificil
+     
+// Función para generar un gráfico con datos del Local Storage
+function generarGraficoPartidasGanadasModofacilvsdif() {
+    // Obtener datos del Local Storage
+    var partGFacil = parseInt(localStorage.getItem("partidasGanadasFacil")) || 0;
+    var partGDificil = parseInt(localStorage.getItem("partidasGanadasDificil")) || 0;
+   
+
+    // Cargar la biblioteca Google Charts
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Función para dibujar el gráfico
+    function drawChart() {
+        // Crear un array con los datos
+        var data = google.visualization.arrayToDataTable([
+            ['Partidas Totales', 'Partidas ganadas en modo facil vs Partidas ganadas en modo dificil'],
+            ['Partidas Ganadas Facil', partGFacil ],
+            ['Partidas Ganadas Dificil', partGDificil]
+        ]);
+
+        // Opciones del gráfico
+        var options = {
+            title: 'Partidas ganadas en modo facil vs Partidas ganadas en modo dificil',
+            pieHole: 0.4,
+            backgroundColor: {
+                fill: 'none'
+            },
+             width: 500,  // Ajusta el ancho del gráfico
+             height: 400  // Ajusta la altura del gráfico
+        };
+
+        // Crear el gráfico y colocarlo en un contenedor HTML con el id 'chart_div'
+        var chart = new google.visualization.PieChart(document.getElementById('pieChart3'));
+        chart.draw(data, options);
+    }
+}
+// Llamar a la función para generar el gráfico al cargar la página
+generarGraficoPartidasGanadasModofacilvsdif();
+

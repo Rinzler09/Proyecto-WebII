@@ -328,3 +328,88 @@
       height: 50px;
       width: 155px;
   }
+
+  
+  #estadisticas {
+    background-color: aliceblue;
+    color: black;
+    margin: 70px auto;
+    border: 2px solid gray;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+    width: 60rem;
+    height: 80rem;
+    align-items: center;
+
+}
+
+#tablaregistros{
+    width: 60rem;
+    height: 40rem;
+
+}
+
+#grilla{
+  margin: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+}
+
+#grilla th{
+  background-color: #4CAF50;
+  padding: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  color: white;
+}
+
+/* aplicando propiedades a toda la grilla que tenga un th y un td */
+#grilla th, #grilla td{
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+/* variacion sobre las filas que son pares e impares, accediendo a todos los miembros que hay en td grilla, alineando texto de la columna nombre*/
+#grilla td:nth-child(2){
+  text-align: left;
+}
+
+/* even detecta lo que son los elementos pares */
+#grilla tr:nth-child(even){
+  background-color: #f2f2f2f2;
+}
+
+#grilla tr:hover{
+  background-color: #ddd;
+}
+/* boton eliminar registro */
+.btnVer{
+  background-color: #4a1dec;
+  color: white;
+  border-radius: 5px;
+}
+
+#tablaregistros{
+
+    background-color: #333;
+    color: #ddd;
+}
+
+.graficos{
+    display: inline-block;
+    margin-right: 10px;
+    background-color: rgb(31, 116, 191);
+    color: black;
+    margin: 30px auto;
+    /* border: 2px solid gray; */
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* flex-wrap: wrap; */
+    text-align: center;
+    width: 20rem;
+    height: 20rem;
+    /* align-items: center; */
+}
