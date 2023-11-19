@@ -42,6 +42,7 @@
     var partGDificil = parseInt(localStorage.getItem("partidasGanadasDificil")) || 0;
     var partPDificil = parseInt(localStorage.getItem("partidasPerdidasDificil")) || 0;
     var partAbandonada = parseInt(localStorage.getItem("partidasAbandonadas")) || 0;
+    var partCompletada = parseInt(localStorage.getItem("partidasCompletadas")) || 0;
 
 
     //
@@ -64,6 +65,7 @@
         partPFacil.push(0);
         partPDificil.push(0);
         partPDificil.push(0);
+        partCompletada.push(0);
         localStorage.setItem('players', JSON.stringify(players));// Guardar el arreglo actualizado en el almacenamiento local
         localStorage.setItem("contadorPerdidasFacil", JSON.stringify(0));
         localStorage.setItem("contadorPerdidasFacil", JSON.stringify(0));
