@@ -483,22 +483,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+/*
+function Tablaestadisticas() {
 
-// function Tablaestadisticas() {
+    var name = localStorage.getItem("jugador", name);
+    var totalGames = parseInt(localStorage.getItem("partidasTotales", totalGames));
+    var totalEasy = parseInt(localStorage.getItem("partidasFacil", totalEasy));
+    var totalDif = parseInt(localStorage.getItem("partidasDificil", totalDif));
+    //concatenar toda la informacion obtenida como un registro creando boton ver, para ver estadisticas     
+    var registro = "<tr><td>" + name + "</td><td>" + totalGames + "</td><td>" + totalEasy + "</td><td>" + totalDif;
+    var fila = document.createElement("tr"); //objeto fila, con toda la informacion de la variable registro
+    fila.innerHTML = registro; // tranferir la informacion de registro a la fila
 
-//     var name = localStorage.getItem("jugador", name);
-//     var totalGames = parseInt(localStorage.getItem("partidasTotales",totalGames));
-//     var totalEasy = parseInt(localStorage.getItem("partidasFacil",totalEasy));
-//     var totalDif = parseInt(localStorage.getItem("partidasDificil",totalDif));
-//     //concatenar toda la informacion obtenida como un registro                                                                   creando boton ver, para ver estadisticas     
-//     var registro = "<tr><td>" + name + "</td><td>" + totalGames + "</td><td>" + totalEasy + "</td><td>" + totalDif;
-//     var fila = document.createElement("tr"); //objeto fila, con toda la informacion de la variable registro
-//     fila.innerHTML = registro; // tranferir la informacion de registro a la fila
+    //diciendole que esa fila con la informacion obtenida, pertenece a la tabla grilla
+    document.getElementById("grilla").appendChild(fila);
+}
 
-//     //diciendole que esa fila con la informacion obtenida, pertenece a la tabla grilla
-//     document.getElementById("grilla").appendChild(fila);
-// }
-
+*/
 
 // function Tablaestadisticas() {
 //     var name = localStorage.getItem("jugador");
@@ -522,9 +523,9 @@ document.addEventListener('DOMContentLoaded', function () {
 // }
 // Tablaestadisticas();
 
-        
+
 // **Grafico** Partidas ganadas en modo dificil vs partidas perdidas en modo dificil
-     
+
 // Función para generar un gráfico con datos del Local Storage
 function generarGraficoModoDificilGanadasPerdidas() {
     // Obtener datos del Local Storage
@@ -552,8 +553,8 @@ function generarGraficoModoDificilGanadasPerdidas() {
             backgroundColor: {
                 fill: 'none'
             },
-             width: 500,  // Ajusta el ancho del gráfico
-             height: 400  // Ajusta la altura del gráfico
+            width: 500,  // Ajusta el ancho del gráfico
+            height: 400  // Ajusta la altura del gráfico
         };
 
         // Crear el gráfico y colocarlo en un contenedor HTML con el id 'chart_div'
@@ -561,11 +562,53 @@ function generarGraficoModoDificilGanadasPerdidas() {
         chart.draw(data, options);
     }
 }
+
+google.charts.load('current', { 'packages': ['table'] });
+google.charts.setOnLoadCallback(drawTable);
+
+function drawTable() {
+    var nombreJugador = localStorage.getItem('jugador');
+    var partidasTot = parseInt(localStorage.getItem('partidasTotales'));
+    var partidasEasyMode = parseInt(localStorage.getItem('partidasFacil'));
+    var partidasDifficultMode = parseInt(localStorage.getItem('partidasDificil'));
+    var data = new google.visualization.DataTable();
+
+    data.addColumn('string', 'Nombre');
+    data.addColumn('number', 'Partidas jugadas Total');
+    data.addColumn('number', 'Partidas jugadas en modo facil');
+    data.addColumn('number', 'Partidas jugadas en modo dificil');
+
+
+
+    data.addRows([
+        [nombreJugador, partidasTot, partidasEasyMode, partidasDifficultMode],
+        // Add more rows as needed
+    ]);
+
+    var options = {
+        cssClassNames: {
+            headerRow: 'header-row',
+            tableRow: 'table-row',
+            oddTableRow: 'odd-table-row',
+            selectedTableRow: 'selected-table-row',
+            hoverTableRow: 'hover-table-row',
+            headerCell: 'header-cell',
+            tableCell: 'table-cell'
+        }
+    }
+
+
+    var table = new google.visualization.Table(document.getElementById('grilla'));
+    table.draw(data, { showRowNumber: true, width: '100%', height: '100%' });
+}
+
+
+
 // Llamar a la función para generar el gráfico al cargar la página
 generarGraficoModoDificilGanadasPerdidas();
 
 // **Grafico** Partidas modo facil vs partidas modo dificil
-     
+
 // Función para generar un gráfico con datos del Local Storage
 function generarGraficoPartidasFacilesvsDificiles() {
     // Obtener datos del Local Storage
@@ -593,8 +636,8 @@ function generarGraficoPartidasFacilesvsDificiles() {
             backgroundColor: {
                 fill: 'none'
             },
-             width: 500,  // Ajusta el ancho del gráfico
-             height: 400  // Ajusta la altura del gráfico
+            width: 500,  // Ajusta el ancho del gráfico
+            height: 400  // Ajusta la altura del gráfico
         };
 
         // Crear el gráfico y colocarlo en un contenedor HTML con el id 'chart_div'
@@ -606,7 +649,7 @@ function generarGraficoPartidasFacilesvsDificiles() {
 generarGraficoPartidasFacilesvsDificiles();
 
 // **Grafico** Total de partidas completadas vs total de partidas no completadas
-     
+
 // Función para generar un gráfico con datos del Local Storage
 function generarGraficoPartidasCompletadasNoComple() {
     // Obtener datos del Local Storage
@@ -624,7 +667,7 @@ function generarGraficoPartidasCompletadasNoComple() {
         // Crear un array con los datos
         var data = google.visualization.arrayToDataTable([
             ['Partidas Totales', 'Total de partidas completadas vs total de partidas no completadas'],
-            ['Partidas Completadas', totalEasy+totalDif],
+            ['Partidas Completadas', totalEasy + totalDif],
             ['Partidas No Completadas', partAbandonada]
         ]);
 
@@ -635,8 +678,8 @@ function generarGraficoPartidasCompletadasNoComple() {
             backgroundColor: {
                 fill: 'none'
             },
-             width: 500,  // Ajusta el ancho del gráfico
-             height: 400  // Ajusta la altura del gráfico
+            width: 500,  // Ajusta el ancho del gráfico
+            height: 400  // Ajusta la altura del gráfico
         };
 
         // Crear el gráfico y colocarlo en un contenedor HTML con el id 'chart_div'
@@ -648,13 +691,13 @@ function generarGraficoPartidasCompletadasNoComple() {
 generarGraficoPartidasCompletadasNoComple();
 
 // **Grafico** Partidas ganadas en modo facil vs Partidas ganadas en modo dificil
-     
+
 // Función para generar un gráfico con datos del Local Storage
 function generarGraficoPartidasGanadasModofacilvsdif() {
     // Obtener datos del Local Storage
     var partGFacil = parseInt(localStorage.getItem("partidasGanadasFacil")) || 0;
     var partGDificil = parseInt(localStorage.getItem("partidasGanadasDificil")) || 0;
-   
+
 
     // Cargar la biblioteca Google Charts
     google.charts.load('current', { 'packages': ['corechart'] });
@@ -665,7 +708,7 @@ function generarGraficoPartidasGanadasModofacilvsdif() {
         // Crear un array con los datos
         var data = google.visualization.arrayToDataTable([
             ['Partidas Totales', 'Partidas ganadas en modo facil vs Partidas ganadas en modo dificil'],
-            ['Partidas Ganadas Facil', partGFacil ],
+            ['Partidas Ganadas Facil', partGFacil],
             ['Partidas Ganadas Dificil', partGDificil]
         ]);
 
@@ -676,8 +719,8 @@ function generarGraficoPartidasGanadasModofacilvsdif() {
             backgroundColor: {
                 fill: 'none'
             },
-             width: 500,  // Ajusta el ancho del gráfico
-             height: 400  // Ajusta la altura del gráfico
+            width: 500,  // Ajusta el ancho del gráfico
+            height: 400  // Ajusta la altura del gráfico
         };
 
         // Crear el gráfico y colocarlo en un contenedor HTML con el id 'chart_div'
